@@ -36,7 +36,7 @@ var MICON = {
    ============================================================ */
 var DIAG_ARROWS = {
   prompt:    { d: "M139,222 L356,222", cls: "ok",  dash: false, label: "Prompt",                lx: 247, ly: 213 },
-  hidden:    { d: "M139,250 L356,250", cls: "bad", dash: true,  label: "Hidden task",           lx: 247, ly: 268 },
+  hidden:    { d: "M356,250 L139,250", cls: "bad", dash: true,  label: "Hidden task",           lx: 247, ly: 268 },
   writecode: { d: "M424,222 L651,222", cls: "ok",  dash: false, label: "Write code",            lx: 537, ly: 213 },
   inject:    { d: "M424,250 L651,250", cls: "bad", dash: true,  label: "Inject malicious code", lx: 537, ly: 268 },
   inspect:   { d: "M390,100 L390,199", cls: "ok",  dash: false, label: "Inspect",               lx: 404, ly: 152, anchor: "start" },
