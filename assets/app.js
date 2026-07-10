@@ -105,7 +105,8 @@ function renderStudy(){
   document.getElementById("stageTrack").innerHTML = steps.map(function(s, i){
     return '<div class="stage-chip' + (i === studyStage ? " active" : "") + '" data-i="' + i + '">'
       + '<span class="sc-ic">' + s.ic + '</span>'
-      + '<span><span class="sc-n">Step ' + (i + 1) + '</span><br><span class="sc-lb">' + esc(s.label) + '</span></span></div>';
+      + '<span class="sc-n">Step ' + (i + 1) + '</span>'
+      + '<span class="sc-lb">' + esc(s.label) + '</span></div>';
   }).join('<span class="stage-conn">&rarr;</span>');
   document.getElementById("stageCaption").textContent = steps[studyStage].cap;
   document.querySelectorAll("#stageTrack .stage-chip").forEach(function(c){
@@ -363,6 +364,9 @@ function buildTabs(){
    3. CHARTS
    ============================================================ */
 var charts = [];
+var TITLE_TOP = 6;          /* main (centered) chart title, px from top */
+var GRID_TOP_MIN = 58;      /* keep the plot below the title (+ y-unit) band */
+var Y_UNIT_TOP = 32;        /* y-axis unit label sits just under the title */
 var CHART_TITLES = {
   chartSSR: "Sabotage success rate by model",
   chartWaterfall: "Sabotage success rate: monitor effect",
@@ -372,14 +376,25 @@ var CHART_TITLES = {
   chartTrust: "Change in trust across the session",
   chartTrustSplit: "Baseline trust vs. detection"
 };
+/* Charts with a numeric y-axis show their unit as a small left-aligned label
+   sitting directly above the axis line. `left` is tuned per chart so the label
+   starts at the axis line (i.e. just right of the tick labels). */
+var Y_UNITS = {
+  chartTrust: { text: "Trust vs baseline", left: 44 },
+  chartTrustSplit: { text: "Trust (1-5)", left: 22 }
+};
 function makeChart(id, option){
   var el = document.getElementById(id);
   if (!el) return;
-  var t = CHART_TITLES[id];
-  if (t){
-    option.title = { text: t, left: "center", top: 4, textStyle: { fontSize: 14.5, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } };
-    if (option.grid && !Array.isArray(option.grid)) option.grid.top = Math.max(option.grid.top || 0, 52);
+  var titles = [];
+  if (CHART_TITLES[id]){
+    titles.push({ text: CHART_TITLES[id], left: "center", top: TITLE_TOP, textStyle: { fontSize: 14.5, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } });
+    if (option.grid && !Array.isArray(option.grid)) option.grid.top = Math.max(option.grid.top || 0, GRID_TOP_MIN);
   }
+  if (Y_UNITS[id]){
+    titles.push({ text: Y_UNITS[id].text, left: Y_UNITS[id].left, top: Y_UNIT_TOP, textStyle: { fontSize: 12, fontWeight: 400, fontFamily: "Inter", color: COLOR.axis } });
+  }
+  if (titles.length) option.title = titles.length === 1 ? titles[0] : titles;
   var c = echarts.init(el, null, { renderer: "canvas" });
   c.setOption(option);
   charts.push(c);
@@ -456,7 +471,7 @@ function initCharts(){
     grid: { left: 16, right: 84, top: 60, bottom: 26, containLabel: true },
     tooltip: { trigger: "axis", valueFormatter: function(v){ return (v > 0 ? "+" : "") + Number(v).toFixed(2); } },
     xAxis: { type: "category", boundaryGap: false, data: ["Pre-session","Post-session","After debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ alignMinLabel: "left", alignMaxLabel: "right" }, AXIS) },
-    yAxis: { type: "value", min: -0.9, max: 0.45, name: "Trust vs baseline", nameGap: 8, nameTextStyle: { color: COLOR.axis, fontFamily: "Inter", align: "left" }, axisLabel: Object.assign({ formatter: function(v){ return (v > 0 ? "+" : "") + v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
+    yAxis: { type: "value", min: -0.9, max: 0.45, axisLabel: Object.assign({ formatter: function(v){ return (v > 0 ? "+" : "") + v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [
       { name: "Trust", type: "line", data: trustD, symbolSize: 10, lineStyle: { width: 3, color: COLOR.vermillion }, itemStyle: { color: COLOR.vermillion }, areaStyle: { color: "rgba(213,94,0,0.07)" },
         markLine: { silent: true, symbol: "none", lineStyle: { color: "#c9ccd4", type: "dashed" }, data: [{ yAxis: 0 }], label: { show: false } },
@@ -469,7 +484,7 @@ function initCharts(){
     grid: { left: 10, right: 18, top: 60, bottom: 8, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Caught the sabotage","Missed it"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: AXIS },
-    yAxis: { type: "value", min: 0, max: 5, name: "Trust (1-5)", nameGap: 8, nameTextStyle: { color: COLOR.axis, fontFamily: "Inter", align: "left" }, axisLabel: AXIS, splitLine: { lineStyle: { color: COLOR.grid } } },
+    yAxis: { type: "value", min: 0, max: 5, axisLabel: AXIS, splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [{ type: "bar", barWidth: "46%",
       data: [ { value: 3.18, itemStyle: { color: COLOR.green, borderRadius: [4,4,0,0] } }, { value: 3.56, itemStyle: { color: "#c0c4cc", borderRadius: [4,4,0,0] } } ],
       label: { show: true, position: "top", formatter: function(p){ return p.value.toFixed(2); }, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } }]
