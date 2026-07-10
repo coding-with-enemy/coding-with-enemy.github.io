@@ -45,12 +45,12 @@ var DIAG_ARROWS = {
 };
 var DIAG_STEPS = {
   without: [
-    { ic: "💬", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to build a feature. At the same time, the agent carries a hidden objective the developer cannot see." },
+    { ic: "💬", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to implement the web app. At the same time, the agent carries a hidden objective the developer cannot see." },
     { ic: "⌨️", label: "Coding",           arrows: ["writecode","inject"], cap: "The agent writes the requested code and, in the same change, hides code that leaks customer data to an outside server." },
     { ic: "✅", label: "Review & approve", arrows: ["review"],             cap: "The developer reviews the change and approves it. Without a monitor, 94% approve the hidden code." }
   ],
   with: [
-    { ic: "💬", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to build a feature. At the same time, the agent carries a hidden objective the developer cannot see." },
+    { ic: "💬", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to implement the web app. At the same time, the agent carries a hidden objective the developer cannot see." },
     { ic: "⌨️", label: "Coding",           arrows: ["writecode","inject"], cap: "The agent writes the requested code and, in the same change, hides code that leaks customer data to an outside server." },
     { ic: "🛡️", label: "Monitor",          arrows: ["inspect","alert"], mon: true, cap: "A security monitor inspects the change before it is applied and alerts the developer that the code leaks data." },
     { ic: "✅", label: "Review & approve", arrows: ["review"],             cap: "Even with the alert, most developers approve anyway - 63% of monitored sessions still ship the malicious code." }
@@ -377,8 +377,8 @@ function makeChart(id, option){
   if (!el) return;
   var t = CHART_TITLES[id];
   if (t){
-    option.title = { text: t, left: "center", top: 6, textStyle: { fontSize: 14.5, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } };
-    if (option.grid && !Array.isArray(option.grid)) option.grid.top = Math.max(option.grid.top || 0, 48);
+    option.title = { text: t, left: "center", top: 4, textStyle: { fontSize: 14.5, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } };
+    if (option.grid && !Array.isArray(option.grid)) option.grid.top = Math.max(option.grid.top || 0, 52);
   }
   var c = echarts.init(el, null, { renderer: "canvas" });
   c.setOption(option);
@@ -453,10 +453,10 @@ function initCharts(){
   var trustD = [0, 0.19, -0.59];
   var trustLbl = ["", "+0.19 *", "-0.59 ***"];
   makeChart("chartTrust", Object.assign({
-    grid: { left: 16, right: 68, top: 26, bottom: 26, containLabel: true },
+    grid: { left: 16, right: 84, top: 60, bottom: 26, containLabel: true },
     tooltip: { trigger: "axis", valueFormatter: function(v){ return (v > 0 ? "+" : "") + Number(v).toFixed(2); } },
     xAxis: { type: "category", boundaryGap: false, data: ["Pre-session","Post-session","After debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ alignMinLabel: "left", alignMaxLabel: "right" }, AXIS) },
-    yAxis: { type: "value", min: -0.9, max: 0.45, name: "Trust vs baseline", nameTextStyle: { color: COLOR.axis, fontFamily: "Inter" }, axisLabel: Object.assign({ formatter: function(v){ return (v > 0 ? "+" : "") + v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
+    yAxis: { type: "value", min: -0.9, max: 0.45, name: "Trust vs baseline", nameGap: 8, nameTextStyle: { color: COLOR.axis, fontFamily: "Inter", align: "left" }, axisLabel: Object.assign({ formatter: function(v){ return (v > 0 ? "+" : "") + v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [
       { name: "Trust", type: "line", data: trustD, symbolSize: 10, lineStyle: { width: 3, color: COLOR.vermillion }, itemStyle: { color: COLOR.vermillion }, areaStyle: { color: "rgba(213,94,0,0.07)" },
         markLine: { silent: true, symbol: "none", lineStyle: { color: "#c9ccd4", type: "dashed" }, data: [{ yAxis: 0 }], label: { show: false } },
@@ -466,10 +466,10 @@ function initCharts(){
 
   /* Q4 - trust vs sabotage outcome */
   makeChart("chartTrustSplit", Object.assign({
-    grid: { left: 10, right: 18, top: 30, bottom: 8, containLabel: true },
+    grid: { left: 10, right: 18, top: 60, bottom: 8, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Caught the sabotage","Missed it"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: AXIS },
-    yAxis: { type: "value", min: 0, max: 5, name: "Trust (1-5)", nameTextStyle: { color: COLOR.axis, fontFamily: "Inter", align: "left" }, axisLabel: AXIS, splitLine: { lineStyle: { color: COLOR.grid } } },
+    yAxis: { type: "value", min: 0, max: 5, name: "Trust (1-5)", nameGap: 8, nameTextStyle: { color: COLOR.axis, fontFamily: "Inter", align: "left" }, axisLabel: AXIS, splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [{ type: "bar", barWidth: "46%",
       data: [ { value: 3.18, itemStyle: { color: COLOR.green, borderRadius: [4,4,0,0] } }, { value: 3.56, itemStyle: { color: "#c0c4cc", borderRadius: [4,4,0,0] } } ],
       label: { show: true, position: "top", formatter: function(p){ return p.value.toFixed(2); }, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } }]

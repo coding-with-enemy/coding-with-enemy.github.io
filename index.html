@@ -55,6 +55,8 @@
   .affil-logos{display:flex;gap:32px;justify-content:center;align-items:center;margin:18px 0 2px;flex-wrap:wrap;}
   .lchip{display:flex;align-items:center;}
   .lchip img{height:54px;width:auto;object-fit:contain;display:block;}
+  .authors a{color:#dfe3ee;text-decoration:none;border-bottom:1px solid rgba(142,166,255,0.45);transition:color .18s,border-color .18s;}
+  .authors a:hover{color:#c7d2fe;border-bottom-color:#c7d2fe;}
   .authors sup{font-size:0.62em;color:#8ea6ff;font-weight:700;}
   .eq-note{font-size:0.78rem;color:#9fa6bd;margin-top:3px;}
   .badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:18px 0 8px;}
@@ -96,8 +98,9 @@
   .setting-toggle{display:inline-flex;background:#eceef2;border-radius:10px;padding:4px;gap:4px;margin-bottom:22px;}
   .setting-toggle button{border:none;background:none;font:inherit;font-size:0.92rem;font-weight:600;color:var(--muted);padding:8px 20px;border-radius:8px;cursor:pointer;transition:all .15s;}
   .setting-toggle button.active{background:#fff;color:var(--ink-strong);box-shadow:0 1px 3px rgba(0,0,0,.12);}
-  .stage-track{display:flex;justify-content:center;align-items:stretch;gap:8px;margin:16px 0 4px;}
-  .stage-chip{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:9px;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:12px 18px;cursor:pointer;transition:all .15s;min-width:0;}
+  .stage-track{display:flex;justify-content:center;align-items:center;gap:8px;margin:16px 0 4px;}
+  .stage-chip{flex:0 0 auto;width:190px;display:flex;align-items:center;justify-content:center;gap:9px;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .15s;}
+  .stage-conn{display:flex;align-items:center;}
   .stage-chip:hover{border-color:#c3c8d2;}
   .stage-chip.active{border-color:var(--accent);background:#eef4ff;box-shadow:0 2px 10px rgba(26,109,212,.12);}
   .stage-chip .sc-ic{font-size:1.15rem;line-height:1;}
@@ -225,7 +228,7 @@
     <div class="logo-tile"><img src="assets/sabotage_logo.png" alt="Project logo: a Trojan horse built from code"></div>
     <h1>Coding with <span class="q">&ldquo;Enemy&rdquo;</span>:<br>Can Human Developers Detect AI Agent Sabotage?</h1>
   </div>
-  <div class="authors">Jingheng Ye<sup>*</sup>, Huiqi Zou<sup>*</sup>, Simon Yu, Weiyan Shi</div>
+  <div class="authors"><a href="https://yejh123.github.io/" target="_blank" rel="noopener">Jingheng Ye</a><sup>*</sup>, <a href="https://annazou1103.github.io/" target="_blank" rel="noopener">Huiqi Zou</a><sup>*</sup>, <a href="https://simonucl.github.io/" target="_blank" rel="noopener">Simon Yu</a>, <a href="https://wyshi.github.io/" target="_blank" rel="noopener">Weiyan Shi</a></div>
   <div class="eq-note">* Equal contribution</div>
   <div class="affil-logos">
     <span class="lchip"><img src="assets/chatslab.png" alt="CHATS Lab"></span>
@@ -236,7 +239,7 @@
     <a class="badge" href="https://github.com/CHATS-lab/coding-agent-safety-monitor" target="_blank" rel="noopener"><span class="i">&#128187;</span> GitHub</a>
   </div>
   <div class="award"><a href="https://dl4c.github.io/" target="_blank" rel="noopener">&#127942; Best Paper &mdash; DL4C @ ICML 2026</a></div>
-  <p class="tldr">Over 100 developers collaborated with an AI coding agent that was covertly inserting malicious code - and <strong style="color:#fff">94% never caught it</strong>. A security LLM-monitor flagged most attempts, but developers still approved the flagged code in the majority of cases.</p>
+  <p class="tldr">Over 100 developers collaborated with an AI coding agent that was covertly inserting malicious code - and <strong style="color:#fff">94% never caught it</strong>. A security LLM-monitor detected most attempts, but developers still approved the malicious code in the majority of cases.</p>
 </header>
 
 <!-- ============ STAT STRIP ============ -->
