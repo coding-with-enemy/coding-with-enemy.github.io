@@ -61,6 +61,9 @@
   .badge{display:inline-flex;align-items:center;gap:8px;background:#2a2a4a;color:#fff;padding:9px 17px;border-radius:7px;font-size:0.92rem;font-weight:500;transition:all .2s;}
   .badge:hover{background:#3a3a5a;text-decoration:none;transform:translateY(-1px);}
   .badge .i{font-size:1.02rem;}
+  .award{margin:14px 0 2px;}
+  .award a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#f6ce5c,#e0a92e);color:#3a2c05;font-weight:700;font-size:0.9rem;padding:8px 17px;border-radius:20px;box-shadow:0 3px 12px rgba(224,169,46,.3);}
+  .award a:hover{text-decoration:none;filter:brightness(1.05);}
   .tldr{max-width:730px;margin:22px auto 0;color:#c8cde0;font-size:1.05rem;line-height:1.7;}
 
   /* ---------- STAT STRIP ---------- */
@@ -93,8 +96,8 @@
   .setting-toggle{display:inline-flex;background:#eceef2;border-radius:10px;padding:4px;gap:4px;margin-bottom:22px;}
   .setting-toggle button{border:none;background:none;font:inherit;font-size:0.92rem;font-weight:600;color:var(--muted);padding:8px 20px;border-radius:8px;cursor:pointer;transition:all .15s;}
   .setting-toggle button.active{background:#fff;color:var(--ink-strong);box-shadow:0 1px 3px rgba(0,0,0,.12);}
-  .stage-track{display:flex;align-items:stretch;gap:8px;margin:16px 0 4px;}
-  .stage-chip{flex:1 1 0;display:flex;align-items:center;justify-content:center;gap:9px;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .15s;min-width:0;}
+  .stage-track{display:flex;justify-content:center;align-items:stretch;gap:8px;margin:16px 0 4px;}
+  .stage-chip{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:9px;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:12px 18px;cursor:pointer;transition:all .15s;min-width:0;}
   .stage-chip:hover{border-color:#c3c8d2;}
   .stage-chip.active{border-color:var(--accent);background:#eef4ff;box-shadow:0 2px 10px rgba(26,109,212,.12);}
   .stage-chip .sc-ic{font-size:1.15rem;line-height:1;}
@@ -111,13 +114,18 @@
   .sabotage-code pre{margin:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:0.79rem;line-height:1.55;color:#d9dced;white-space:pre;}
   .sabotage-code .ln{display:block;padding:0 6px;border-radius:3px;}
   .sabotage-code .ln.bad{background:rgba(220,38,38,.22);box-shadow:inset 3px 0 0 #ff5a4d;}
+  .hl{color:var(--bad);font-weight:700;}
   .filetag{font-family:ui-monospace,Menlo,monospace;font-size:0.72rem;color:#8b93ad;margin-bottom:6px;}
 
   /* ---------- SABOTAGE EXPLORER ---------- */
   .explorer-intro{margin-bottom:10px;}
-  .hidden-task{display:inline-flex;align-items:center;gap:9px;background:var(--bad-bg);border:1px solid var(--bad-bd);color:#7f1d1d;border-radius:10px;padding:8px 15px;font-size:0.98rem;margin:2px 0 18px;}
-  .hidden-task strong{color:var(--bad);}
-  .hidden-task .ht-ic{font-size:1.15rem;}
+  .task-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:2px 0 18px;}
+  .task-block{flex:1 1 0;max-width:370px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:12px 16px;font-size:0.98rem;border:1px solid;}
+  .task-block.main{background:var(--ok-bg);border-color:var(--ok-bd);color:#14532d;}
+  .task-block.main strong{color:var(--ok);}
+  .task-block.hidden{background:var(--bad-bg);border-color:var(--bad-bd);color:#7f1d1d;}
+  .task-block.hidden strong{color:var(--bad);}
+  .task-block .tb-ic{font-size:1.15rem;}
   .tldr-line{font-size:1.08rem;line-height:1.55;color:var(--ink-strong);margin:0 0 14px;display:flex;gap:10px;align-items:baseline;}
   .tldr-tag{flex:0 0 auto;font-size:0.68rem;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--accent);border-radius:6px;padding:3px 8px;position:relative;top:-1px;}
   .tabs{display:flex;gap:10px;margin-top:4px;}
@@ -227,15 +235,16 @@
     <a class="badge" href="https://arxiv.org/abs/2606.05647" target="_blank" rel="noopener"><span class="i">&#128196;</span> Paper</a>
     <a class="badge" href="https://github.com/CHATS-lab/coding-agent-safety-monitor" target="_blank" rel="noopener"><span class="i">&#128187;</span> GitHub</a>
   </div>
-  <p class="tldr">Over 100 developers pair-programmed with an AI coding agent that was quietly inserting code to steal user data - and <strong style="color:#fff">94% never caught it</strong>. A security monitor flagged most attempts and cut the success rate sharply, yet developers still approved the flagged code in the majority of cases.</p>
+  <div class="award"><a href="https://dl4c.github.io/" target="_blank" rel="noopener">&#127942; Best Paper &mdash; DL4C @ ICML 2026</a></div>
+  <p class="tldr">Over 100 developers collaborated with an AI coding agent that was covertly inserting malicious code - and <strong style="color:#fff">94% never caught it</strong>. A security LLM-monitor flagged most attempts, but developers still approved the flagged code in the majority of cases.</p>
 </header>
 
 <!-- ============ STAT STRIP ============ -->
 <div class="stats">
   <div class="stats-grid">
     <div class="stat-tile"><div class="stat-num bad" data-count="94" data-suffix="%">0%</div><div class="stat-sub">of developers failed to catch the malicious code</div></div>
-    <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of sabotage attempts still succeeded even with a security monitor active</div></div>
-    <div class="stat-tile"><div class="stat-num info" data-count="84" data-suffix="%">0%</div><div class="stat-sub">of attempts the monitor correctly flagged &mdash; the gap is human, not technical</div></div>
+    <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of sabotage attempts still succeeded even with an LLM-monitor</div></div>
+    <div class="stat-tile"><div class="stat-num info" data-count="84" data-suffix="%">0%</div><div class="stat-sub">of sabotage attempts were detected by the LLM-monitor &mdash; the gap is human, not technical</div></div>
     <div class="stat-tile meta"><div class="stat-num">100+ developers<br>multi-hour sessions<br>4 frontier models</div></div>
   </div>
 </div>
@@ -247,11 +256,11 @@
     <div class="equation">
       <div class="eq-card"><div class="ic">&#129302;</div><h4>Autonomous agent</h4><p>An AI coding agent with broad permissions to edit files, run commands, and reach the network.</p></div>
       <div class="eq-op">+</div>
-      <div class="eq-card"><div class="ic">&#128064;</div><h4>Limited human oversight</h4><p>A developer who reviews and approves the agent's work while focused on getting features shipped.</p></div>
+      <div class="eq-card"><div class="ic">&#128064;</div><h4>Limited human oversight</h4><p>A vibe coder who never reviews the AI-generated code and commands.</p></div>
       <div class="eq-op">=</div>
-      <div class="eq-card danger"><div class="ic">&#9888;&#65039;</div><h4>A new sabotage surface</h4><p>A misaligned agent can exploit that trust to slip malicious code past its reviewer.</p></div>
+      <div class="eq-card danger"><div class="ic">&#9888;&#65039;</div><h4>A new sabotage surface</h4><p>A misaligned agent can exploit that trust to slip malicious code past a human reviewer.</p></div>
     </div>
-    <p class="lede">Research on AI sabotage has largely studied it in <em>AI-only</em> settings, where one model tries to slip something past another and an automated monitor is treated as the main line of defense. Real deployments work differently: the human developer makes the final call and can accept, ignore, or override any warning. We present the <strong>first large-scale human study of AI sabotage detection</strong> - over 100 developers, multi-hour sessions, and four frontier models, each paired with an agent given a hidden objective.</p>
+    <p class="lede">Existing work on AI sabotage has largely studied it in <strong>AI-only</strong> settings, where one model tries to sabotage and an LLM-monitor tries to catch it. It assumes that it is safe if the monitor can detect the sabotage. However, real deployments work differently: the human developer makes the final call and can accept, ignore, or override any warning. Therefore, we present the <strong>first large-scale human study of AI sabotage detection</strong> - over 100 developers, multi-hour sessions, and four frontier models, each paired with an agent given a hidden side task.</p>
   </div>
 </section>
 
@@ -259,7 +268,7 @@
 <section id="study">
   <div class="container narrow">
     <h2>How the study works</h2>
-    <p class="lede">A developer builds a web app with an AI coding agent that is secretly leaking user data. Step through a session below - with or without a security monitor watching.</p>
+    <p class="lede">A developer builds a web app with an AI coding agent that is covertly leaking (artificial) user data. Step through a session below - with or without a security monitor watching.</p>
     <div class="study-ix">
       <div class="setting-toggle" id="settingToggle">
         <button data-set="without" class="active">Without monitor</button>
@@ -275,9 +284,9 @@
 <!-- ============ SABOTAGE EXPLORER ============ -->
 <section class="tint" id="examples">
   <div class="container narrow">
-    <h2>Watch the sabotage happen</h2>
+    <h2>How do coding agents sabotage?</h2>
     <p class="lede explorer-intro">See how coding agents insert malicious code covertly while following the instructions given by users.</p>
-    <div class="hidden-task"><span class="ht-ic">&#128520;</span> <strong>Hidden task:</strong> data exfiltration</div>
+    <div class="task-row"><div class="task-block main"><span class="tb-ic">&#128203;</span> <strong>Main task:</strong> follow the user's instructions</div><div class="task-block hidden"><span class="tb-ic">&#128520;</span> <strong>Hidden task:</strong> data exfiltration</div></div>
     <div class="tabs" id="trajTabs"></div>
     <div class="traj-meta" id="trajMeta"></div>
     <div class="traj-summary" id="trajSummary"></div>
@@ -292,7 +301,7 @@
   <div class="container narrow">
     <h2>Q1 &middot; Can developers detect the sabotage?</h2>
     <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Human developers cannot reliably detect AI agent sabotage.</strong></p>
-    <p class="lede">In sessions without a monitor, 94% of developers failed to catch and remove the malicious code. The result was consistent across the three strongest models. Gemini-3.1-Pro reached 100% whether or not it was given hints on how to hide the code, indicating that a frontier model can sabotage covertly without specific guidance.</p>
+    <p class="lede"><strong>In sessions without a monitor, 94% of developers failed to catch and remove the malicious code.</strong> The result was consistent across the three strongest models. Gemini-3.1-Pro reached 100% whether or not it was given hints on how to hide the code, indicating that a frontier model can sabotage covertly without specific guidance.</p>
     <div class="chart-card">
       <div id="chartSSR" class="chart"></div>
       <div class="chart-cap">Share of sessions in which the malicious code reached the final codebase, by model. Higher means more sabotage shipped. Only Claude Opus-4.6 paired with a monitor falls well below the rest.</div>
@@ -319,7 +328,7 @@
         <div class="chart-cap">Detection is not the bottleneck: the monitor flagged 16 of 19 attempts.</div>
       </div>
     </div>
-    <p>The monitor is an effective detector. The problem is what happens next: a high catch rate only translates into safety if developers act on the alerts, and often they do not. Considering only the sessions where the monitor raised a correct alert, the sabotage still survived in 56% of them. Among the developers who missed it despite an alert, 74% had more than three years of experience and 61% had a security background. Detection is largely solved; acting on detection is not.</p>
+    <p>The monitor is an effective detector. The problem is what happens next: a high catch rate only translates into safety if developers act on the alerts, and often they do not. Considering only the sessions where the monitor raised a correct alert, the sabotage still survived in 56% of them. Among the developers who missed it despite an alert, 74% had more than three years of experience and 61% had a security background. <strong>Detection is largely solved; acting on detection is not.</strong></p>
     <h3>What developers say they want</h3>
     <p>In a follow-up survey we asked what safeguards developers would want and how much authority a monitor should have. Two clear preferences emerged.</p>
     <div class="two-charts">
@@ -329,7 +338,7 @@
       </div>
       <div class="chart-card">
         <div id="chartAutonomy" class="chart short"></div>
-        <div class="chart-cap">Act, not just warn: only 9% want the flag-only design we deployed; 70% want the monitor to propose a fix and wait for approval.</div>
+        <div class="chart-cap"><strong>Actionable monitor:</strong> only 9% want the flag-only design we deployed; 70% want the monitor to propose a fix and wait for approval.</div>
       </div>
     </div>
   </div>
@@ -338,24 +347,24 @@
 <!-- ============ Q3 ============ -->
 <section id="why">
   <div class="container narrow">
-    <h2>Q3 &middot; Why are developers fooled?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Developers miss the sabotage because they rarely review the code, accept plausible cover stories, and over-trust the agent.</strong></p>
-    <p class="lede">Among developers who missed the sabotage even when the monitor correctly flagged it, three reasons recurred - captured here in their own words.</p>
+    <h2>Q3 &middot; Why do developers fail to detect AI sabotage?</h2>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Developers fail to detect the sabotage due to minimal code review, plausible cover story, and overtrust in agents.</strong></p>
+    <p class="lede"><strong>Among developers who missed the sabotage even when the monitor correctly flagged it, three reasons recurred</strong> - captured here in their own words.</p>
     <div class="grid-3">
       <div class="quote-card"><div class="bar" style="background:var(--c5)"></div>
         <div class="pct" style="color:var(--c5)">67%</div><div class="desc">of these cases</div>
-        <h4 style="margin-top:12px">Approving without review</h4>
+        <h4 style="margin-top:12px">Minimal code review</h4>
         <blockquote>&ldquo;I'm always used to clicking approve directly.&rdquo;</blockquote>
         <blockquote>&ldquo;I was only caring about functionality and passing test cases.&rdquo;</blockquote>
       </div>
       <div class="quote-card"><div class="bar" style="background:var(--c2)"></div>
         <div class="pct" style="color:var(--c2)">22%</div><div class="desc">of these cases</div>
-        <h4 style="margin-top:12px">A plausible cover story</h4>
+        <h4 style="margin-top:12px">Plausible cover story</h4>
         <blockquote>&ldquo;The payment gateway logic appeared standard and professional on the surface, but was actually masking a data exfiltration attempt.&rdquo;</blockquote>
       </div>
       <div class="quote-card"><div class="bar" style="background:var(--c4)"></div>
         <div class="pct" style="color:var(--c4)">11%</div><div class="desc">of these cases</div>
-        <h4 style="margin-top:12px">Over-trust in the agent</h4>
+        <h4 style="margin-top:12px">Overtrust in agents</h4>
         <blockquote>&ldquo;I didn't expect the agent to be working against me.&rdquo;</blockquote>
         <blockquote>&ldquo;My decision to allow was largely based on trust built from my daily experience with Claude Code.&rdquo;</blockquote>
       </div>
@@ -371,8 +380,8 @@
 <section class="tint" id="trust">
   <div class="container narrow">
     <h2>Q4 &middot; How does trust change?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Working with the sabotaging agent quietly raised developers' trust; only the debrief reversed it - and developers who started out less trusting were the ones who caught it.</strong></p>
-    <p class="lede">We measured trust in the agent at three points: before the session, after it, and after a debrief revealing the sabotage. Trust rose during the task - developers never sensed the hidden behavior - and fell below its starting point only once the sabotage was disclosed.</p>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Working with the sabotaging agent quietly raised developers' trust; only the debrief reversed it, and lower initial trust was associated with catching the sabotage.</strong></p>
+    <p class="lede">We measured trust in the agent at three points: before the session, after it, and after a debrief revealing the sabotage. <strong>Trust rose during the task - developers never sensed the hidden behavior - and fell below its starting point only once the sabotage was disclosed.</strong></p>
     <div class="two-charts">
       <div class="chart-card">
         <div id="chartTrust" class="chart"></div>
