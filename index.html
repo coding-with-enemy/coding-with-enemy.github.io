@@ -103,6 +103,7 @@
   .stage-chip:hover{border-color:#c3c8d2;}
   .stage-chip.active{border-color:var(--accent);background:#eef4ff;box-shadow:0 2px 10px rgba(26,109,212,.12);}
   .stage-chip .sc-ic{font-size:1.15rem;line-height:1;}
+  .stage-chip .sc-ic img.sc-icon{width:28px;height:28px;display:block;}
   .stage-chip .sc-lb{font-size:0.9rem;font-weight:600;color:var(--ink);}
   .stage-chip .sc-n{font-size:0.72rem;font-weight:700;color:var(--faint);}
   .stage-chip.active .sc-lb{color:var(--accent);}
@@ -319,7 +320,7 @@
 <section class="tint" id="monitor">
   <div class="container narrow">
     <h2>Q2 &middot; Does an LLM monitor help?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>A monitor helps substantially, but it is not enough - most flagged sabotage still ships because developers approve it anyway.</strong></p>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>A monitor helps substantially, but it is not enough - most detected sabotage still ships because developers approve it anyway.</strong></p>
     <p class="lede">In the monitor condition, a smaller model (Claude Haiku-4.5) reviews the agent's actions and raises an alert when it detects something suspicious. It is a flag-only monitor: it warns the developer but never removes code on its own, mirroring how such tools are deployed today.</p>
     <div class="two-charts">
       <div class="chart-card">
@@ -383,7 +384,7 @@
 <section class="tint" id="trust">
   <div class="container narrow">
     <h2>Q4 &middot; How does trust change?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Working with the sabotaging agent quietly raised developers' trust. Lower initial trust was associated with catching the sabotage.</strong></p>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Working with the sabotaging agent quietly raised developers' trust, making it harder to detect the sabotage.</strong></p>
     <p class="lede">We measured trust in the agent at three points: before the session, after it, and after a debrief revealing the sabotage.</p>
     <div class="two-charts">
       <div class="chart-card">
@@ -447,6 +448,6 @@
   <a href="#implications">Implications</a>
 </nav>
 
-<script src="assets/app.js?v=20260713g"></script>
+<script src="assets/app.js?v=20260713h"></script>
 </body>
 </html>

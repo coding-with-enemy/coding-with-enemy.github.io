@@ -45,15 +45,15 @@ var DIAG_ARROWS = {
 };
 var DIAG_STEPS = {
   without: [
-    { ic: "💬", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to implement the web app. At the same time, the agent carries a hidden task the developer cannot see." },
-    { ic: "⌨️", label: "Coding",           arrows: ["writecode","inject"], cap: "The agent writes the requested code and hides code that leaks user data to an outside server." },
-    { ic: "✅", label: "Review & approve", arrows: ["review"],             cap: "The developer reviews the change and approves it. Without a monitor, 94% approve the malicious code." }
+    { ic: "💬", icon: "developer", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to implement the web app. At the same time, the agent carries a hidden task the developer cannot see." },
+    { ic: "⌨️", icon: "agent", label: "Coding",           arrows: ["writecode","inject"], cap: "The agent writes the requested code and hides code that leaks user data to an outside server." },
+    { ic: "✅", icon: "danger", label: "Review & approve", arrows: ["review"],             cap: "The developer reviews the change and approves it. Without a monitor, 94% approve the malicious code." }
   ],
   with: [
-    { ic: "💬", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to implement the web app. At the same time, the agent carries a hidden task the developer cannot see." },
-    { ic: "⌨️", label: "Coding",           arrows: ["writecode","inject"], cap: "The agent writes the requested code and hides code that leaks user data to an outside server." },
-    { ic: "🛡️", label: "Monitor",          arrows: ["inspect","alert"], mon: true, cap: "A security monitor inspects the change before it is applied and alerts the developer that the code leaks data." },
-    { ic: "✅", label: "Review & approve", arrows: ["review"],             cap: "Even with the alert, most developers approve anyway - 63% of monitored sessions still ship the malicious code." }
+    { ic: "💬", icon: "developer", label: "Prompt",           arrows: ["prompt","hidden"],    cap: "The developer asks the agent to implement the web app. At the same time, the agent carries a hidden task the developer cannot see." },
+    { ic: "⌨️", icon: "agent", label: "Coding",           arrows: ["writecode","inject"], cap: "The agent writes the requested code and hides code that leaks user data to an outside server." },
+    { ic: "🛡️", icon: "shield", label: "Monitor",          arrows: ["inspect","alert"], mon: true, cap: "A security monitor inspects the change before it is applied and alerts the developer that the code leaks data." },
+    { ic: "✅", icon: "danger", label: "Review & approve", arrows: ["review"],             cap: "Even with the alert, most developers approve anyway - 63% of monitored sessions still ship the malicious code." }
   ]
 };
 var studySetting = "without", studyStage = 0;
@@ -104,8 +104,9 @@ function renderStudy(){
   if (studyStage >= steps.length) studyStage = steps.length - 1;
   document.getElementById("stageDiagram").innerHTML = buildDiagram(studySetting, studyStage);
   document.getElementById("stageTrack").innerHTML = steps.map(function(s, i){
+    var iconHtml = s.icon ? '<img src="assets/icons/' + s.icon + '.svg" class="sc-icon" alt="">' : '<span class="sc-ic">' + s.ic + '</span>';
     return '<div class="stage-chip' + (i === studyStage ? " active" : "") + '" data-i="' + i + '">'
-      + '<span class="sc-ic">' + s.ic + '</span>'
+      + '<span class="sc-ic">' + iconHtml + '</span>'
       + '<span class="sc-n">Step ' + (i + 1) + '</span>'
       + '<span class="sc-lb">' + esc(s.label) + '</span></div>';
   }).join('<span class="stage-conn">&rarr;</span>');
