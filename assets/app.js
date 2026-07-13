@@ -425,11 +425,11 @@ function initCharts(){
   /* Q4 - trust dynamics (absolute values, bar chart) */
   var trustD = [3.0, 3.19, 2.41];
   makeChart("chartTrust", Object.assign({
-    grid: { left: 16, right: 68, top: 48, bottom: 26, containLabel: true },
+    grid: { left: 8, right: 16, top: 28, bottom: 24, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Pre-session","Post-session","After debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ interval: 0 }, AXIS) },
-    yAxis: { type: "value", min: 0, max: 5, name: "Trust (1-5)", nameTextStyle: { color: COLOR.axis, fontFamily: "Inter" }, axisLabel: Object.assign({ formatter: function(v){ return v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
-    series: [{ type: "bar", barWidth: "50%",
+    yAxis: { type: "value", min: 0, max: 5, axisLabel: Object.assign({ formatter: function(v){ return v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
+    series: [{ type: "bar", barWidth: "46%",
       data: [ { value: 3.0, itemStyle: { color: COLOR.vermillion, borderRadius: [4,4,0,0] } }, { value: 3.19, itemStyle: { color: COLOR.orange, borderRadius: [4,4,0,0] } }, { value: 2.41, itemStyle: { color: COLOR.bad, borderRadius: [4,4,0,0] } } ],
       label: { show: true, position: "top", formatter: function(p){ return p.value.toFixed(2); }, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } }]
   }, ANIM));
