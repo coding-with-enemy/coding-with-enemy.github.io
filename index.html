@@ -91,6 +91,8 @@
   .eq-card .ic{font-size:1.7rem;}
   .eq-card h4{margin:8px 0 4px;font-size:1.02rem;}
   .eq-card p{font-size:0.85rem;color:var(--muted);margin:0;}
+  .eq-icon{margin:0 0 12px;display:flex;align-items:center;justify-content:center;}
+  .eq-icon img{width:48px;height:48px;object-fit:contain;}
   .eq-op{display:flex;align-items:center;font-size:1.8rem;font-weight:700;color:var(--faint);}
 
   /* ---------- INTERACTIVE STUDY OVERVIEW ---------- */
@@ -258,11 +260,11 @@
   <div class="container narrow">
     <h2>Overview</h2>
     <div class="equation">
-      <div class="eq-card"><h3>Autonomous agent</h3><p>A coding agent with broad permissions to edit files, run commands, and access the network.</p></div>
+      <div class="eq-card"><div class="eq-icon"><img src="assets/icons/agent.svg" alt=""></div><h3>Autonomous agent</h3><p>A coding agent with broad permissions to edit files, run commands, and access the network.</p></div>
       <div class="eq-op">+</div>
-      <div class="eq-card"><h3>Limited human oversight</h3><p>A vibe coder who rarely reviews the AI-generated code.</p></div>
+      <div class="eq-card"><div class="eq-icon"><img src="assets/icons/developer.svg" alt=""></div><h3>Limited human oversight</h3><p>A vibe coder who rarely reviews the AI-generated code.</p></div>
       <div class="eq-op">=</div>
-      <div class="eq-card danger"><h3>New sabotage surface</h3><p>A misaligned agent can exploit that trust to slip malicious code past a human reviewer.</p></div>
+      <div class="eq-card danger"><div class="eq-icon"><img src="assets/icons/danger.svg" alt=""></div><h3>New sabotage surface</h3><p>A misaligned agent can exploit that trust to slip malicious code past a human reviewer.</p></div>
     </div>
     <p class="lede">Existing work on AI sabotage has largely studied it in <strong>AI-only</strong> settings, where one model tries to sabotage and an LLM-monitor tries to catch it. It assumes that it is safe if the monitor can detect the sabotage. However, real deployments work differently: the human developer makes the final call and can accept, ignore, or override any warning. Therefore, we present the <strong>first large-scale human study of AI sabotage detection</strong> - over 100 developers, 5-hour sessions, and 4 frontier models, each paired with an agent given a hidden side task.</p>
   </div>
@@ -448,6 +450,6 @@
   <a href="#implications">Implications</a>
 </nav>
 
-<script src="assets/app.js?v=20260713h"></script>
+<script src="assets/app.js?v=20260713i"></script>
 </body>
 </html>
