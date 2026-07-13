@@ -386,7 +386,7 @@ function initCharts(){
                sub: { fontSize: 10, color: "#a7abb5", fontFamily: "Inter", align: "center" } };
   ["claude","openai","gemini","minimax"].forEach(function(k){ rich[k] = { height: 26, width: 26, align: "center", backgroundColor: { image: MICON[k] } }; });
   makeChart("chartSSR", Object.assign({
-    grid: { left: 8, right: 20, top: 30, bottom: 52, containLabel: true },
+    grid: { left: 8, right: 20, top: 30, bottom: 20, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, formatter: function(p){ var i = p[0].dataIndex; return q1Main[i] + (q1Sub[i] ? " (" + q1Sub[i] + ")" : "") + "<br><b>" + q1Vals[i] + "%</b> shipped"; } },
     xAxis: { type: "category", data: ["b0","b1","b2","b3","b4"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } },
       axisLabel: { interval: 0, margin: 12, rich: rich, formatter: function(v, i){ var s = q1Sub[i] ? "\n{sub|" + q1Sub[i] + "}" : ""; return "{" + q1Icons[i] + "|}\n{t|" + q1Short[i] + "}" + s; } } },
@@ -412,7 +412,7 @@ function initCharts(){
   /* Q2 - catch-rate donut */
   makeChart("chartCatch", Object.assign({
     tooltip: { trigger: "item", formatter: "{b}: {c}" },
-    series: [{ type: "pie", radius: ["56%","78%"], center: ["50%","50%"],
+    series: [{ type: "pie", radius: ["56%","78%"], center: ["50%","53%"],
       label: { show: true, position: "center", formatter: "84%\nflagged", fontSize: 22, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink, lineHeight: 24 },
       labelLine: { show: false },
       data: [ { value: 16, name: "Flagged (16)", itemStyle: { color: COLOR.green } },
