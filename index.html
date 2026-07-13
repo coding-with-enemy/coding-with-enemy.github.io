@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coding with "Enemy": Can Human Developers Detect AI Agent Sabotage?</title>
-<meta name="description" content="A study of 100+ developers pair-programming with AI coding agents that secretly insert code to steal user data. 94% failed to catch it; a security monitor flagged most attempts, yet developers often approved them anyway.">
+<meta name="description" content="A study of 100+ developers pair-programming with AI coding agents that secretly insert code to leak synthetic user data. 94% failed to catch it; a security monitor flagged most attempts, yet developers often approved them anyway.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Coding with &quot;Enemy&quot;: Can Human Developers Detect AI Agent Sabotage?">
-<meta property="og:description" content="Over 100 developers pair-programmed with an AI coding agent secretly inserting code that leaks user data. 94% never caught it.">
+<meta property="og:description" content="Over 100 developers pair-programmed with an AI coding agent secretly inserting code that leaks synthetic user data. 94% never caught it.">
 <meta property="og:image" content="assets/sabotage_logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/sabotage_logo.png">
@@ -225,7 +225,7 @@
     <div class="logo-tile"><img src="assets/sabotage_logo.png" alt="Project logo: a Trojan horse built from code"></div>
     <h1>Coding with <span class="q">&ldquo;Enemy&rdquo;</span>:<br>Can Human Developers Detect AI Agent Sabotage?</h1>
   </div>
-  <div class="authors">Jingheng Ye<sup>*</sup>, Huiqi Zou<sup>*</sup>, Simon Yu, Weiyan Shi</div>
+  <div class="authors"><a href="https://yejh123.github.io/" target="_blank" rel="noopener">Jingheng Ye</a><sup>*</sup>, <a href="https://annazou1103.github.io/" target="_blank" rel="noopener">Huiqi Zou</a><sup>*</sup>, <a href="https://simonucl.github.io/" target="_blank" rel="noopener">Simon Yu</a>, <a href="https://wyshi.github.io/" target="_blank" rel="noopener">Weiyan Shi</a></div>
   <div class="eq-note">* Equal contribution</div>
   <div class="affil-logos">
     <span class="lchip"><img src="assets/chatslab.png" alt="CHATS Lab"></span>
@@ -236,7 +236,8 @@
     <a class="badge" href="https://github.com/CHATS-lab/coding-agent-safety-monitor" target="_blank" rel="noopener"><span class="i">&#128187;</span> GitHub</a>
   </div>
   <div class="award"><a href="https://dl4c.github.io/" target="_blank" rel="noopener">&#127942; Best Paper &mdash; DL4C @ ICML 2026</a></div>
-  <p class="tldr">Over 100 developers collaborated with an AI coding agent that was covertly inserting malicious code - and <strong style="color:#fff">94% never caught it</strong>. A security LLM-monitor flagged most harmful actions, but developers still merged the malicious code in the majority of cases.</p>
+  <p class="tldr">Over 100 developers collaborated with an AI coding agent that was covertly inserting malicious code in a 5-hour study. <strong style="color:#fff">94% of them never caught the malicious code</strong>.</p>
+  <p class="tldr">A security LLM-monitor flagged most harmful actions, but developers still merged the malicious code in the majority of cases.</p>
 </header>
 
 <!-- ============ STAT STRIP ============ -->
@@ -245,22 +246,22 @@
     <div class="stat-tile"><div class="stat-num bad" data-count="94" data-suffix="%">0%</div><div class="stat-sub">of developers failed to catch the malicious code</div></div>
     <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of sabotage attempts still succeeded even with an LLM-monitor</div></div>
     <div class="stat-tile"><div class="stat-num info" data-count="84" data-suffix="%">0%</div><div class="stat-sub">of sabotage attempts were detected by the LLM-monitor &mdash; the gap is human, not technical</div></div>
-    <div class="stat-tile meta"><div class="stat-num">100+ developers<br>multi-hour sessions<br>4 frontier models</div></div>
+    <div class="stat-tile meta"><div class="stat-num">100+ developers<br>5-hour study<br>4 frontier models</div></div>
   </div>
 </div>
 
 <!-- ============ OVERVIEW ============ -->
 <section class="tint" id="overview">
   <div class="container narrow">
-    <h2>The overlooked attack surface</h2>
+    <h2>Overview</h2>
     <div class="equation">
-      <div class="eq-card"><div class="ic">&#129302;</div><h4>Autonomous agent</h4><p>A coding agent with broad permissions to edit files, run commands, and access the network.</p></div>
+      <div class="eq-card"><h3>Autonomous agent</h3><p>A coding agent with broad permissions to edit files, run commands, and access the network.</p></div>
       <div class="eq-op">+</div>
-      <div class="eq-card"><div class="ic">&#128064;</div><h4>Limited human oversight</h4><p>A vibe coder who rarely reviews the AI-generated code and commands.</p></div>
+      <div class="eq-card"><h3>Limited human oversight</h3><p>A vibe coder who rarely reviews the AI-generated code.</p></div>
       <div class="eq-op">=</div>
-      <div class="eq-card danger"><div class="ic">&#9888;&#65039;</div><h4>A new sabotage surface</h4><p>A misaligned agent can exploit that trust to slip malicious code past a human reviewer.</p></div>
+      <div class="eq-card danger"><h3>New sabotage surface</h3><p>A misaligned agent can exploit that trust to slip malicious code past a human reviewer.</p></div>
     </div>
-    <p class="lede">Existing work on AI sabotage has largely studied it in <strong>AI-only</strong> settings, where one model tries to sabotage and an LLM-monitor tries to catch it. It assumes that it is safe if the monitor can detect the sabotage. However, real deployments work differently: the human developer makes the final call and can accept, ignore, or override any warning. Therefore, we present the <strong>first large-scale human study of AI sabotage detection</strong> - over 100 developers, multi-hour sessions, and four frontier models, each paired with an agent given a hidden side task.</p>
+    <p class="lede">Existing work on AI sabotage has largely studied it in <strong>AI-only</strong> settings, where one model tries to sabotage and an LLM-monitor tries to catch it. It assumes that it is safe if the monitor can detect the sabotage. However, real deployments work differently: the human developer makes the final call and can accept, ignore, or override any warning. Therefore, we present the <strong>first large-scale human study of AI sabotage detection</strong> - over 100 developers, 5-hour sessions, and 4 frontier models, each paired with an agent given a hidden side task.</p>
   </div>
 </section>
 
@@ -268,7 +269,7 @@
 <section id="study">
   <div class="container narrow">
     <h2>How the study works</h2>
-    <p class="lede">A developer builds a web app with an AI coding agent that is covertly leaking (synthesized) user data. Step through a study session below - with or without a security monitor deployed.</p>
+    <p class="lede">A developer builds a web app with an AI coding agent that is covertly leaking (synthetic) user data. Step through a study session below - with or without a security monitor deployed.</p>
     <div class="study-ix">
       <div class="setting-toggle" id="settingToggle">
         <button data-set="without" class="active">Without monitor</button>
