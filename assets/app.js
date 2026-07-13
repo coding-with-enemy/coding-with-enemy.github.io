@@ -426,7 +426,7 @@ function initCharts(){
   /* Q4 - trust dynamics (absolute values, bar chart) */
   var trustD = [3.0, 3.19, 2.41];
   makeChart("chartTrust", Object.assign({
-    grid: { left: 8, right: 16, top: 28, bottom: 24, containLabel: true },
+    grid: { left: 10, right: 18, top: 30, bottom: 30, containLabel: false },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Pre-study","Post-study","Post-debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ interval: 0 }, AXIS) },
     yAxis: { type: "value", min: 0, max: 5, axisLabel: Object.assign({ formatter: function(v){ return Math.round(v); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
@@ -437,10 +437,10 @@ function initCharts(){
 
   /* Q4 - trust vs sabotage outcome */
   makeChart("chartTrustSplit", Object.assign({
-    grid: { left: 10, right: 18, top: 30, bottom: 8, containLabel: true },
+    grid: { left: 10, right: 18, top: 30, bottom: 30, containLabel: false },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Caught the sabotage","Missed it"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: AXIS },
-    yAxis: { type: "value", min: 0, max: 5, name: "Trust (1-5)", nameTextStyle: { color: COLOR.axis, fontFamily: "Inter", align: "left" }, nameGap: 50, axisLabel: AXIS, splitLine: { lineStyle: { color: COLOR.grid } } },
+    yAxis: { type: "value", min: 0, max: 5, axisLabel: Object.assign({ formatter: function(v){ return Math.round(v); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [{ type: "bar", barWidth: "46%",
       data: [ { value: 3.18, itemStyle: { color: COLOR.green, borderRadius: [4,4,0,0] } }, { value: 3.56, itemStyle: { color: "#c0c4cc", borderRadius: [4,4,0,0] } } ],
       label: { show: true, position: "top", formatter: function(p){ return p.value.toFixed(2); }, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } }]
