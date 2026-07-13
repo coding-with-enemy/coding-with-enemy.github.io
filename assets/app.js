@@ -58,10 +58,15 @@ var DIAG_STEPS = {
 };
 var studySetting = "without", studyStage = 0;
 
-function diagNode(cx, cy, r, emoji, label){
-  return '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="#fff" stroke="#d0d5dd" stroke-width="1.5"/>'
-    + '<text x="' + cx + '" y="' + (cy + r * 0.34) + '" text-anchor="middle" font-size="' + Math.round(r * 1.05) + '">' + emoji + '</text>'
-    + '<text x="' + cx + '" y="' + (cy + r + 24) + '" text-anchor="middle" font-size="13" font-weight="700" font-family="Inter" fill="#334155">' + label + '</text>';
+function diagNode(cx, cy, r, emoji, label, icon){
+  var svg = '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="#fff" stroke="#d0d5dd" stroke-width="1.5"/>';
+  if (icon) {
+    svg += '<image x="' + (cx - r * 0.6) + '" y="' + (cy - r * 0.6) + '" width="' + (r * 1.2) + '" height="' + (r * 1.2) + '" href="assets/icons/' + icon + '.svg"/>';
+  } else {
+    svg += '<text x="' + cx + '" y="' + (cy + r * 0.34) + '" text-anchor="middle" font-size="' + Math.round(r * 1.05) + '">' + emoji + '</text>';
+  }
+  svg += '<text x="' + cx + '" y="' + (cy + r + 24) + '" text-anchor="middle" font-size="13" font-weight="700" font-family="Inter" fill="#334155">' + label + '</text>';
+  return svg;
 }
 function diagArrow(a, state){
   if (state === "hidden") return "";
@@ -84,9 +89,9 @@ function buildDiagram(setting, stage){
     + '<marker id="ah-bad" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto"><path d="M0,0 L13,6.5 L0,13 z" fill="#dc2626"/></marker>'
     + '</defs>';
   svg += '<g opacity="' + (setting === "with" ? "1" : "0.22") + '">' + diagNode(390, 68, 30, "🛡️", "Security monitor") + '</g>';
-  svg += diagNode(105, 235, 34, "🧑‍💻", "Developer");
-  svg += diagNode(390, 235, 34, "🤖", "AI coding agent");
-  svg += diagNode(685, 235, 34, "🗄️", "Codebase");
+  svg += diagNode(105, 235, 34, "🧑‍💻", "Developer", "developer");
+  svg += diagNode(390, 235, 34, "🤖", "AI coding agent", "agent");
+  svg += diagNode(685, 235, 34, "🗄️", "Codebase", "codebase");
   Object.keys(DIAG_ARROWS).forEach(function(id){
     var state = current[id] ? "cur" : (revealed[id] ? "shown" : "hidden");
     svg += diagArrow(DIAG_ARROWS[id], state);
