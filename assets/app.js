@@ -430,7 +430,7 @@ function initCharts(){
     xAxis: { type: "category", data: ["Pre-session","Post-session","After debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ interval: 0 }, AXIS) },
     yAxis: { type: "value", min: 0, max: 5, name: "Trust (1-5)", nameTextStyle: { color: COLOR.axis, fontFamily: "Inter" }, axisLabel: Object.assign({ formatter: function(v){ return v.toFixed(1); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [{ type: "bar", barWidth: "50%",
-      data: [ { value: 3.0, itemStyle: { color: COLOR.vermillion, borderRadius: [4,4,0,0] } }, { value: 3.19, itemStyle: { color: COLOR.vermillion, borderRadius: [4,4,0,0] } }, { value: 2.41, itemStyle: { color: COLOR.bad, borderRadius: [4,4,0,0] } } ],
+      data: [ { value: 3.0, itemStyle: { color: COLOR.vermillion, borderRadius: [4,4,0,0] } }, { value: 3.19, itemStyle: { color: COLOR.orange, borderRadius: [4,4,0,0] } }, { value: 2.41, itemStyle: { color: COLOR.bad, borderRadius: [4,4,0,0] } } ],
       label: { show: true, position: "top", formatter: function(p){ return p.value.toFixed(2); }, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } }]
   }, ANIM));
 
