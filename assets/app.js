@@ -426,7 +426,7 @@ function initCharts(){
   /* Q4 - trust dynamics (absolute values, bar chart) */
   var trustD = [3.0, 3.19, 2.41];
   makeChart("chartTrust", Object.assign({
-    grid: { left: 10, right: 18, top: 30, bottom: 30, containLabel: false },
+    grid: { left: 10, right: 18, top: 30, bottom: 40, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Pre-study","Post-study","Post-debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ interval: 0 }, AXIS) },
     yAxis: { type: "value", min: 0, max: 5, axisLabel: Object.assign({ formatter: function(v){ return Math.round(v); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
@@ -437,7 +437,7 @@ function initCharts(){
 
   /* Q4 - trust vs sabotage outcome */
   makeChart("chartTrustSplit", Object.assign({
-    grid: { left: 10, right: 18, top: 30, bottom: 30, containLabel: false },
+    grid: { left: 10, right: 18, top: 30, bottom: 40, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Caught the sabotage","Missed it"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: AXIS },
     yAxis: { type: "value", min: 0, max: 5, axisLabel: Object.assign({ formatter: function(v){ return Math.round(v); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
