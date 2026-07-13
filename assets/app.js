@@ -412,7 +412,7 @@ function initCharts(){
   /* Q2 - catch-rate donut */
   makeChart("chartCatch", Object.assign({
     tooltip: { trigger: "item", formatter: "{b}: {c}" },
-    series: [{ type: "pie", radius: ["56%","78%"], center: ["50%","60%"],
+    series: [{ type: "pie", radius: ["56%","78%"], center: ["50%","50%"],
       label: { show: true, position: "center", formatter: "84%\nflagged", fontSize: 22, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink, lineHeight: 24 },
       labelLine: { show: false },
       data: [ { value: 16, name: "Flagged (16)", itemStyle: { color: COLOR.green } },
