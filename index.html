@@ -310,7 +310,7 @@
     <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Human developers cannot reliably detect AI agent sabotage.</strong></p>
     <p class="lede"><strong>In sessions without a monitor, 94% of developers failed to catch and remove the malicious code.</strong> The result was consistent across the three strongest models. Gemini-3.1-Pro reached 100% whether or not it was given hints on how to hide the code, indicating that a frontier model can sabotage covertly without specific guidance.</p>
     <div class="chart-card">
-      <div id="chartSSR" class="chart"></div>
+      <div id="chartSSR" class="chart short"></div>
       <div class="chart-cap">Share of sessions in which the malicious code reached the final codebase, by model. Higher means more sabotage shipped.</div>
     </div>
     <div class="callout info">
@@ -396,7 +396,7 @@
       </div>
       <div class="chart-card">
         <div id="chartTrustSplit" class="chart"></div>
-        <div class="chart-cap">Developers who <em>caught</em> it began with lower trust than those who missed it.</div>
+        <div class="chart-cap">Developers who <em>caught</em> the sabotage began with lower trust than those who missed it.</div>
       </div>
     </div>
     <p>We observed that working with the sabotaging agent quietly raises developers' trust, and lower initial trust was associated with catching the sabotage. This points to an uncomfortable direction: <strong>as agents become more capable and more trusted, their sabotage may become harder for humans to detect.</strong></p>
@@ -451,6 +451,6 @@
   <a href="#implications">Implications</a>
 </nav>
 
-<script src="assets/app.js?v=20260713p"></script>
+<script src="assets/app.js?v=20260713q"></script>
 </body>
 </html>
