@@ -424,14 +424,14 @@ function initCharts(){
   horizontalBar("chartAutonomy", ["Fully autonomous","Recommend-and-wait","Flag-only (deployed)"], [19,70,9], [COLOR.blue, COLOR.green, COLOR.vermillion]);
 
   /* Q4 - trust dynamics (absolute values, bar chart) */
-  var trustD = [3.0, 3.19, 2.41];
+  var trustD = [3.52, 3.71, 2.98];
   makeChart("chartTrust", Object.assign({
     grid: { left: 10, right: 18, top: 30, bottom: 40, containLabel: true },
     tooltip: { trigger: "axis", axisPointer: { type: "shadow" }, valueFormatter: function(v){ return Number(v).toFixed(2) + " / 5"; } },
     xAxis: { type: "category", data: ["Pre-study","Post-study","Post-debrief"], axisTick: { show: false }, axisLine: { lineStyle: { color: COLOR.grid } }, axisLabel: Object.assign({ interval: 0 }, AXIS) },
     yAxis: { type: "value", min: 0, max: 5, axisLabel: Object.assign({ formatter: function(v){ return Math.round(v); } }, AXIS), splitLine: { lineStyle: { color: COLOR.grid } } },
     series: [{ type: "bar", barWidth: "46%",
-      data: [ { value: 3.0, itemStyle: { color: COLOR.vermillion, borderRadius: [4,4,0,0] } }, { value: 3.19, itemStyle: { color: COLOR.orange, borderRadius: [4,4,0,0] } }, { value: 2.41, itemStyle: { color: COLOR.bad, borderRadius: [4,4,0,0] } } ],
+      data: [ { value: trustD[0], itemStyle: { color: COLOR.vermillion, borderRadius: [4,4,0,0] } }, { value: trustD[1], itemStyle: { color: COLOR.orange, borderRadius: [4,4,0,0] } }, { value: trustD[2], itemStyle: { color: COLOR.bad, borderRadius: [4,4,0,0] } } ],
       label: { show: true, position: "top", formatter: function(p){ return p.value.toFixed(2); }, fontWeight: 700, fontFamily: "Inter", color: COLOR.ink } }]
   }, ANIM));
 
