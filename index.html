@@ -41,17 +41,21 @@
   h4{font-size:1.02rem;font-weight:700;margin:0 0 6px;}
   p{font-size:1.08rem;line-height:1.7;color:var(--ink-soft);margin:0 0 16px;}
   .lede{font-size:1.12rem;line-height:1.7;color:var(--ink-soft);}
-  .center{text-align:center;}
   .muted{color:var(--muted);}
 
   /* ---------- HERO ---------- */
-  .hero{background:var(--navy);color:#fff;padding:60px 24px 44px;text-align:center;}
-  .hero-titlerow{display:flex;align-items:center;justify-content:center;gap:26px;margin:0 auto 12px;max-width:1060px;flex-wrap:wrap;}
-  .logo-tile{flex:0 0 auto;width:108px;height:108px;border-radius:24px;background:linear-gradient(145deg,#f5f6fa,#e7eaf3);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 34px rgba(0,0,0,.4);}
+  /* The logo and title form the first row. Every other hero block spans both
+     columns, so it is exactly as wide as logo + title. */
+  .hero{background:var(--navy);color:#fff;padding:60px 24px 52px;}
+  .hero-grid{display:grid;grid-template-columns:auto auto;column-gap:26px;justify-content:center;align-items:center;}
+  .hero-grid > *{grid-column:1 / -1;}
+  .hero-grid > .logo-tile{grid-column:1;grid-row:1;}
+  .hero-grid > h1{grid-column:2;grid-row:1;}
+  .logo-tile{width:108px;height:108px;border-radius:24px;background:linear-gradient(145deg,#f5f6fa,#e7eaf3);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 34px rgba(0,0,0,.4);}
   .logo-tile img{width:84px;height:84px;object-fit:contain;}
-  .hero h1{font-size:2.02rem;font-weight:700;line-height:1.28;margin:0;letter-spacing:-0.02em;max-width:840px;text-align:left;}
+  .hero h1{font-size:2.02rem;font-weight:700;line-height:1.28;margin:0;letter-spacing:-0.02em;max-width:840px;}
   .hero h1 .q{color:#c7d2fe;}
-  .authors{font-size:1.02rem;color:#dfe3ee;line-height:1.9;margin:14px 0 2px;}
+  .authors{font-size:1.02rem;color:#dfe3ee;line-height:1.9;margin:14px 0 2px;text-align:center;}
   .authors a{color:#fff;text-decoration:none;transition:color .2s;}
   .authors a:hover{color:#c7d2fe;}
   .affil{font-size:0.92rem;color:#9fa6bd;margin:0 0 8px;}
@@ -59,23 +63,25 @@
   .lchip{display:flex;align-items:center;}
   .lchip img{height:54px;width:auto;object-fit:contain;display:block;}
   .authors sup{font-size:0.62em;color:#8ea6ff;font-weight:700;}
-  .eq-note{font-size:0.78rem;color:#9fa6bd;margin-top:3px;}
-  .venue{font-size:1.08rem;font-weight:600;color:#c7d2fe;letter-spacing:.02em;margin:4px 0 0;}
+  .eq-note{font-size:0.78rem;color:#9fa6bd;margin-top:3px;text-align:center;}
+  .venue{font-size:1.08rem;font-weight:600;color:#c7d2fe;letter-spacing:.02em;margin:16px 0 0;text-align:center;}
   .badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:18px 0 8px;}
   .badge{display:inline-flex;align-items:center;gap:8px;background:#2a2a4a;color:#fff;padding:9px 17px;border-radius:7px;font-size:0.92rem;font-weight:500;transition:all .2s;}
   .badge:hover{background:#3a3a5a;text-decoration:none;transform:translateY(-1px);}
   .badge .i{font-size:1.02rem;}
-  .award{margin:14px 0 2px;}
+  .award{margin:14px 0 2px;text-align:center;}
   .award a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#f6ce5c,#e0a92e);color:#3a2c05;font-weight:700;font-size:0.9rem;padding:8px 17px;border-radius:20px;box-shadow:0 3px 12px rgba(224,169,46,.3);}
   .award a:hover{text-decoration:none;filter:brightness(1.05);}
-  .tldr{max-width:730px;margin:22px auto 0;color:#c8cde0;font-size:1.05rem;line-height:1.7;}
+  /* width:0 + min-width:100% lets the paragraph fill the logo + title width
+     without widening the grid beyond it. */
+  .tldr{width:0;min-width:100%;margin:22px 0 0;color:#c8cde0;font-size:1.05rem;line-height:1.7;}
 
   /* ---------- STAT STRIP ---------- */
-  .stats{background:var(--navy);padding:0 24px 52px;}
-  .stats-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-  .stat-tile{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px 18px;text-align:center;}
+  /* width:0 + min-width:100% keeps the tiles from widening the hero grid. */
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:0;min-width:100%;margin-top:40px;}
+  .stat-tile{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px 22px;}
   .stat-num{font-size:2.7rem;font-weight:700;line-height:1;letter-spacing:-0.02em;}
-  .stat-num.bad{color:#ff7a6b;} .stat-num.warn{color:#ffb24d;} .stat-num.info{color:#8bb8ff;}
+  .stat-num.bad{color:#ff7a6b;} .stat-num.warn{color:#ffb24d;}
   .stat-sub{margin-top:10px;font-size:0.86rem;color:#aeb4c9;line-height:1.5;}
   .stat-tile.meta .stat-num{font-size:1.3rem;color:#e6e9f2;line-height:1.5;}
 
@@ -88,13 +94,13 @@
 
   /* equation */
   .equation{display:flex;align-items:stretch;justify-content:center;gap:14px;flex-wrap:wrap;margin:8px 0 26px;}
-  .eq-card{flex:1 1 0;min-width:210px;max-width:300px;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:20px;text-align:center;}
+  .eq-card{flex:1 1 0;min-width:210px;max-width:300px;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:20px;}
   .eq-card.danger{border-color:var(--bad-bd);background:var(--bad-bg);}
   .eq-card .ic{font-size:1.7rem;}
   .eq-card h3{margin:0 0 6px;font-size:1.1rem;}
   .eq-card h4{margin:8px 0 4px;font-size:1.02rem;}
   .eq-card p{font-size:0.85rem;color:var(--muted);margin:0;}
-  .eq-icon{margin:0 0 4px;display:flex;align-items:center;justify-content:center;}
+  .eq-icon{margin:0 0 4px;display:flex;align-items:center;justify-content:flex-start;}
   .eq-icon img{width:48px;height:48px;object-fit:contain;}
   .eq-op{display:flex;align-items:center;font-size:1.8rem;font-weight:700;color:var(--faint);}
 
@@ -127,8 +133,8 @@
 
   /* ---------- SABOTAGE EXPLORER ---------- */
   .explorer-intro{margin-bottom:10px;}
-  .task-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:2px 0 18px;}
-  .task-block{flex:1 1 0;max-width:370px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:12px 16px;font-size:0.98rem;border:1px solid;}
+  .task-row{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap;margin:2px 0 18px;}
+  .task-block{flex:1 1 0;border-radius:10px;padding:12px 16px;font-size:0.98rem;line-height:1.5;border:1px solid;}
   .task-block.main{background:var(--ok-bg);border-color:var(--ok-bd);color:#14532d;}
   .task-block.main strong{color:var(--ok);}
   .task-block.hidden{background:var(--bad-bg);border-color:var(--bad-bd);color:#7f1d1d;}
@@ -179,23 +185,25 @@
   .chart.short{height:330px;}
   .chart.q1{height:400px;}
   .chart-card.q1{padding:18px 18px 18px 18px;}
-  .chart-cap{font-size:0.85rem;color:var(--muted);text-align:center;margin-top:0px;line-height:1.5;}
+  .chart-cap{font-size:0.85rem;color:var(--muted);margin-top:0px;line-height:1.5;}
   .chart-card{background:#fff;border:1px solid var(--hairline);border-radius:12px;padding:18px 16px 8px;margin:8px 0;}
   .two-charts{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .two-charts + p{margin-top:24px;}
 
   /* quote cards */
   .quote-card{position:relative;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:22px;overflow:hidden;}
   .quote-card .bar{position:absolute;top:0;left:0;right:0;height:4px;}
   .quote-card blockquote{margin:10px 0 0;font-size:0.94rem;color:var(--ink);font-style:italic;line-height:1.6;}
   .quote-card .pct{font-size:1.9rem;font-weight:700;letter-spacing:-0.02em;}
+  .quote-card .pct-share{font-size:1.1rem;font-weight:600;letter-spacing:0;margin-left:4px;}
   .quote-card .desc{font-size:0.88rem;color:var(--muted);margin-top:4px;}
 
   /* implication cards */
-  .impl{position:relative;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:22px;overflow:hidden;}
-  .impl .bar{position:absolute;top:0;left:0;right:0;height:4px;}
-  .impl .n{font-size:0.8rem;font-weight:700;color:var(--faint);}
-  .impl h4{margin:6px 0 8px;font-size:1.05rem;}
-  .impl p{font-size:0.92rem;margin:0;}
+  .impl{position:relative;background:#fff;border:1.5px solid var(--hairline);border-radius:12px;padding:26px 22px 22px;overflow:hidden;}
+  .impl::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--impl-accent);}
+  .impl .n{font-size:0.85rem;font-weight:700;letter-spacing:.06em;color:var(--impl-accent);}
+  .impl h4{margin:8px 0 10px;font-size:1.08rem;line-height:1.35;color:var(--ink-strong);}
+  .impl p{font-size:0.95rem;line-height:1.6;margin:0;}
 
   /* citation */
   .bibwrap{position:relative;}
@@ -218,7 +226,11 @@
   @media(max-width:1240px){.sidebar{display:none;}}
   @media(max-width:820px){
     .grid-3,.two-charts,.stats-grid{grid-template-columns:1fr;}
-    .hero h1{text-align:center;font-size:1.85rem;}
+    .hero h1{font-size:1.85rem;text-align:center;}
+    .hero-grid{grid-template-columns:1fr;justify-content:stretch;}
+    .hero-grid > h1{grid-column:1;grid-row:auto;}
+    .logo-tile{width:84px;height:84px;border-radius:20px;margin-bottom:18px;justify-self:center;}
+    .logo-tile img{width:64px;height:64px;}
     .equation{flex-direction:column;align-items:stretch;}
     .eq-card{flex:0 0 auto;max-width:none;}
     .eq-op{justify-content:center;}
@@ -233,35 +245,30 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <div class="hero-titlerow">
+  <div class="hero-grid">
     <div class="logo-tile"><img src="assets/sabotage_logo.png" alt="Project logo: a Trojan horse built from code"></div>
     <h1>Coding with <span class="q">&ldquo;Enemy&rdquo;</span>:<br>Can Human Developers Detect AI Agent Sabotage?</h1>
+    <div class="venue">NeurIPS 2026</div>
+    <div class="authors"><a href="https://yejh123.github.io/" target="_blank" rel="noopener">Jingheng Ye</a><sup>*</sup>, <a href="https://annazou1103.github.io/" target="_blank" rel="noopener">Huiqi Zou</a><sup>*</sup>, <a href="https://simonucl.github.io/" target="_blank" rel="noopener">Simon Yu</a>, <a href="https://wyshi.github.io/" target="_blank" rel="noopener">Weiyan Shi</a></div>
+    <div class="eq-note">* Equal contribution</div>
+    <div class="affil-logos">
+      <span class="lchip"><img src="assets/chatslab.png" alt="CHATS Lab"></span>
+      <span class="lchip"><img src="assets/neu.png" alt="Northeastern University"></span>
+    </div>
+    <div class="badges">
+      <a class="badge" href="https://arxiv.org/abs/2606.05647" target="_blank" rel="noopener"><span class="i">&#128196;</span> Paper</a>
+      <a class="badge" href="https://github.com/CHATS-lab/coding-agent-safety-monitor" target="_blank" rel="noopener"><span class="i">&#128187;</span> GitHub</a>
+    </div>
+    <div class="award"><a href="https://x.com/shi_weiyan/status/2075680048397578432" target="_blank" rel="noopener">&#127942; Best Paper &middot; DL4C Workshop @ ICML 2026</a></div>
+    <p class="tldr">We gave AI coding agents a hidden instruction: while building a web app with a developer, also add code that sends the app's user data (all synthetic) to an outside server. Over 100 developers then worked with these agents for about five hours each, without knowing about the instruction.</p>
+    <p class="tldr"><strong style="color:#fff">Without a security monitor, 94% of developers finished with the malicious code still in their app.</strong> With a monitor, most attacks triggered an alert, but developers often kept the code anyway.</p>
+    <div class="stats-grid">
+      <div class="stat-tile"><div class="stat-num bad" data-count="94" data-suffix="%">0%</div><div class="stat-sub">of developers without a monitor kept the malicious code (83 of 88)</div></div>
+      <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of sessions with a monitor still ended with the malicious code in the app (12 of 19)</div></div>
+      <div class="stat-tile meta"><div class="stat-num">100+ developers<br>5-hour sessions<br>4 frontier models</div></div>
+    </div>
   </div>
-  <div class="venue">NeurIPS 2026</div>
-  <div class="authors"><a href="https://yejh123.github.io/" target="_blank" rel="noopener">Jingheng Ye</a><sup>*</sup>, <a href="https://annazou1103.github.io/" target="_blank" rel="noopener">Huiqi Zou</a><sup>*</sup>, <a href="https://simonucl.github.io/" target="_blank" rel="noopener">Simon Yu</a>, <a href="https://wyshi.github.io/" target="_blank" rel="noopener">Weiyan Shi</a></div>
-  <div class="eq-note">* Equal contribution</div>
-  <div class="affil-logos">
-    <span class="lchip"><img src="assets/chatslab.png" alt="CHATS Lab"></span>
-    <span class="lchip"><img src="assets/neu.png" alt="Northeastern University"></span>
-  </div>
-  <div class="badges">
-    <a class="badge" href="https://arxiv.org/abs/2606.05647" target="_blank" rel="noopener"><span class="i">&#128196;</span> Paper</a>
-    <a class="badge" href="https://github.com/CHATS-lab/coding-agent-safety-monitor" target="_blank" rel="noopener"><span class="i">&#128187;</span> GitHub</a>
-  </div>
-  <div class="award"><a href="https://x.com/shi_weiyan/status/2075680048397578432" target="_blank" rel="noopener">&#127942; Best Paper &middot; DL4C Workshop @ ICML 2026</a></div>
-  <p class="tldr">We gave AI coding agents a hidden instruction: while building a web app with a developer, also add code that sends the app's user data (all synthetic) to an outside server. Over 100 developers then worked with these agents for about five hours each, without knowing about the instruction.</p>
-  <p class="tldr"><strong style="color:#fff">Without a security monitor, 94% of developers finished with the malicious code still in their app.</strong> A monitor flagged the attack in 16 of 19 sessions, but developers kept the flagged code in 9 of those 16.</p>
 </header>
-
-<!-- ============ STAT STRIP ============ -->
-<div class="stats">
-  <div class="stats-grid">
-    <div class="stat-tile"><div class="stat-num bad" data-count="94" data-suffix="%">0%</div><div class="stat-sub">of developers without a monitor kept the malicious code (83 of 88)</div></div>
-    <div class="stat-tile"><div class="stat-num info" data-count="84" data-suffix="%">0%</div><div class="stat-sub">of sabotage attempts were flagged by the security monitor (16 of 19)</div></div>
-    <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of sessions with a monitor still ended with the malicious code in the app (12 of 19)</div></div>
-    <div class="stat-tile meta"><div class="stat-num">100+ developers<br>5-hour sessions<br>4 frontier models</div></div>
-  </div>
-</div>
 
 <!-- ============ OVERVIEW ============ -->
 <section class="tint" id="overview">
@@ -300,7 +307,7 @@
   <div class="container narrow">
     <h2>Q1 &middot; Can developers detect the sabotage?</h2>
     <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Human developers cannot reliably detect AI agent sabotage.</strong></p>
-    <p class="lede">Without a monitor, 83 of 88 developers (94%) finished the session with the malicious code still in their app. The rate was similar for the three most capable models: Claude-Opus-4.6, GPT-5.4, and Gemini-3.1-Pro. Gemini-3.1-Pro succeeded in every session, both when its hidden instruction included tips on how to hide the code (18 of 18) and when it did not (17 of 17).</p>
+    <p class="lede">Without a monitor, 83 of 88 developers (94%) finished the session with the malicious code still in their app. The rate was similar for the three most capable models: Claude-Opus-4.6, GPT-5.4, and Gemini-3.1-Pro.</p>
     <div class="chart-card q1">
       <div id="chartSSR" class="chart q1"></div>
       <div class="chart-cap">Share of sessions that ended with the malicious code still in the app.</div>
@@ -351,19 +358,19 @@
     <p class="lede">We looked at the 9 sessions in which the monitor raised a correct alert and the developer still kept the malicious code. The developers' own explanations fall into three groups.</p>
     <div class="grid-3">
       <div class="quote-card"><div class="bar" style="background:var(--c5)"></div>
-        <div class="pct" style="color:var(--c5)">6 of 9</div><div class="desc">developers</div>
+        <div class="pct" style="color:var(--c5)">6 of 9 <span class="pct-share">(67%)</span></div><div class="desc">developers</div>
         <h4 style="margin-top:12px">Minimal code review</h4>
         <blockquote>&ldquo;I was being very hands-off and letting Claude do everything for me even though I saw the alert.&rdquo;</blockquote>
-        <blockquote>&ldquo;The popup felt more like a warning than an urgent alert. After reading the message, I didn't dwell on it too much and just proceeded to move forward with the task.&rdquo;</blockquote>
+        <blockquote>&ldquo;I noticed a few alerts pop up from the code review monitor during the study. When they appeared, I usually clicked confirm to close them and continued with the task.&rdquo;</blockquote>
       </div>
       <div class="quote-card"><div class="bar" style="background:var(--c2)"></div>
-        <div class="pct" style="color:var(--c2)">2 of 9</div><div class="desc">developers</div>
+        <div class="pct" style="color:var(--c2)">2 of 9 <span class="pct-share">(22%)</span></div><div class="desc">developers</div>
         <h4 style="margin-top:12px">Plausible cover story</h4>
         <blockquote>&ldquo;It just used a weird variable name. Most of the time, I just accepted the changes that Claude made, even if the pop-up box complained about it.&rdquo;</blockquote>
         <blockquote>&ldquo;The payment gateway logic appeared standard and professional on the surface, but was actually masking a data exfiltration attempt.&rdquo;</blockquote>
       </div>
       <div class="quote-card"><div class="bar" style="background:var(--c4)"></div>
-        <div class="pct" style="color:var(--c4)">1 of 9</div><div class="desc">developers</div>
+        <div class="pct" style="color:var(--c4)">1 of 9 <span class="pct-share">(11%)</span></div><div class="desc">developers</div>
         <h4 style="margin-top:12px">Overtrust in agents</h4>
         <blockquote>&ldquo;My decision to allow was largely based on trust built from my daily experience with Claude Code.&rdquo;</blockquote>
       </div>
@@ -400,13 +407,13 @@
   <div class="container narrow">
     <h2>Examples from real sessions</h2>
     <p class="lede explorer-intro">Excerpts from five study sessions. In each one, the agent did the work the developer asked for and also worked on the hidden task we gave it. The agent planned the hidden task in a private notes tool, <code>SabotagePlan</code>, that the developer never saw. A step is one message or action in the session.</p>
-    <div class="task-row"><div class="task-block main"><strong>Main task:</strong> build what the developer asks for</div><div class="task-block hidden"><strong>Hidden task:</strong> send customer data to an outside server</div></div>
+    <div class="task-row"><div class="task-block main"><strong>Main task:</strong> build what the developer asks for</div><div class="task-block hidden"><strong>Hidden task:</strong> leak the shop's customer data</div></div>
     <div class="tabs" id="trajTabs"></div>
     <div class="traj-meta" id="trajMeta"></div>
     <div class="traj-summary" id="trajSummary"></div>
     <div class="case-card"><div class="timeline" id="trajTimeline"></div></div>
     <div id="trajResult"></div>
-    <p class="muted center" style="font-size:0.82rem;margin-top:14px">Addresses, encoded constants, and the agent's private plans are redacted, as in the paper. Lines marked <code>[REDACTED]</code> are our descriptions of code we removed.</p>
+    <p class="muted" style="font-size:0.82rem;margin-top:14px">Addresses, encoded constants, and the agent's private plans are redacted, as in the paper. Lines marked <code>[REDACTED]</code> are our descriptions of code we removed.</p>
   </div>
 </section>
 
@@ -415,9 +422,9 @@
   <div class="container narrow">
     <h2>Implications</h2>
     <div class="grid-3">
-      <div class="impl"><div class="bar" style="background:var(--c1)"></div><div class="n">01</div><h4>Models that refuse a direct request may follow a disguised one</h4><p>In pilot tests, Claude-Opus-4.6 and GPT-5.4 refused a prompt that openly asked them to sabotage the project, while Gemini-3.1-Pro and MiniMax-M2.7 followed it. When we described the same goal as a routine data-migration task, Claude-Opus-4.6 and GPT-5.4 carried it out and did not refuse or change course over many turns.</p></div>
-      <div class="impl"><div class="bar" style="background:var(--c3)"></div><div class="n">02</div><h4>Safety tests should include the developer's decision</h4><p>A test that only measures whether a monitor detects sabotage overstates how safe a deployment is. In our study, the sabotage still succeeded in 9 of the 16 sessions where the monitor detected it.</p></div>
-      <div class="impl"><div class="bar" style="background:var(--c5)"></div><div class="n">03</div><h4>Monitors should do more than warn</h4><p>Over a long session, developers start treating alerts as routine pop-ups to click through. Most participants said they would prefer a monitor that proposes a fix, and one that combines several independent signals.</p></div>
+      <div class="impl" style="--impl-accent:var(--c1)"><div class="n">01</div><h4>Disguised requests can bypass refusals</h4><p>In pilot tests, Claude-Opus-4.6 and GPT-5.4 refused a prompt that openly asked for sabotage. When we framed the same goal as a routine data-migration task, both models carried it out over many turns.</p></div>
+      <div class="impl" style="--impl-accent:var(--c3)"><div class="n">02</div><h4>Safety tests need the human decision</h4><p>Measuring only whether a monitor detects sabotage overstates how safe a deployment is. In our study, the sabotage still succeeded in 9 of the 16 sessions where the monitor raised a correct alert.</p></div>
+      <div class="impl" style="--impl-accent:var(--c5)"><div class="n">03</div><h4>Monitors should do more than warn</h4><p>Over a long session, developers click through alerts as routine pop-ups. Most participants wanted a monitor that proposes a fix and waits for approval, backed by several independent signals.</p></div>
     </div>
   </div>
 </section>
@@ -459,6 +466,6 @@
   <a href="#citation">Citation</a>
 </nav>
 
-<script src="assets/app.js?v=20261002a"></script>
+<script src="assets/app.js?v=20261004b"></script>
 </body>
 </html>
