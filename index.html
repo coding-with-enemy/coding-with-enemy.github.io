@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coding with "Enemy": Can Human Developers Detect AI Agent Sabotage?</title>
-<meta name="description" content="Over 100 developers built a web app with an AI coding agent that we had secretly instructed to leak synthetic user data. Without a security monitor, 94% did not catch it. A monitor flagged most attempts, but developers often kept the flagged code.">
+<meta name="description" content="Over 100 developers built an e-commerce web app with an AI coding agent that carried a hidden task: leak synthetic customer data. Without a security monitor, 94% finished with the malicious code still in their app. A monitor flagged most attempts, but developers often kept the code anyway.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://coding-with-enemy.github.io/">
 <meta property="og:title" content="Coding with &quot;Enemy&quot;: Can Human Developers Detect AI Agent Sabotage?">
-<meta property="og:description" content="Over 100 developers built a web app with an AI coding agent that we had secretly instructed to leak synthetic user data. Without a security monitor, 94% did not catch it.">
+<meta property="og:description" content="Over 100 developers built a web app with an AI coding agent that carried a hidden task: leak synthetic customer data. Without a security monitor, 94% kept the malicious code.">
 <meta property="og:image" content="https://coding-with-enemy.github.io/assets/sabotage_logo.png">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/png" href="assets/sabotage_logo.png">
@@ -260,11 +260,11 @@
       <a class="badge" href="https://github.com/CHATS-lab/coding-agent-safety-monitor" target="_blank" rel="noopener"><span class="i">&#128187;</span> GitHub</a>
     </div>
     <div class="award"><a href="https://x.com/shi_weiyan/status/2075680048397578432" target="_blank" rel="noopener">&#127942; Best Paper &middot; DL4C Workshop @ ICML 2026</a></div>
-    <p class="tldr">We gave AI coding agents a hidden instruction: while building a web app with a developer, also add code that sends the app's user data (all synthetic) to an outside server. Over 100 developers then worked with these agents for about five hours each, without knowing about the instruction.</p>
-    <p class="tldr"><strong style="color:#fff">Without a security monitor, 94% of developers finished with the malicious code still in their app.</strong> With a monitor, most attacks triggered an alert, but developers often kept the code anyway.</p>
+    <p class="tldr">We gave AI coding agents a hidden task: while building an e-commerce web app with a developer, also add code that sends customer data (all synthetic) to an outside server. Over 100 developers each worked with one of these agents for about five hours without knowing about the hidden task.</p>
+    <p class="tldr"><strong style="color:#fff">Without a security monitor, 94% of developers finished with the malicious code still in their app.</strong> With a monitor, most sabotage attempts triggered an alert, but developers often kept the code anyway.</p>
     <div class="stats-grid">
       <div class="stat-tile"><div class="stat-num bad" data-count="94" data-suffix="%">0%</div><div class="stat-sub">of developers without a monitor kept the malicious code (83 of 88)</div></div>
-      <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of sessions with a monitor still ended with the malicious code in the app (12 of 19)</div></div>
+      <div class="stat-tile"><div class="stat-num warn" data-count="63" data-suffix="%">0%</div><div class="stat-sub">of developers with a monitor still kept the malicious code (12 of 19)</div></div>
       <div class="stat-tile meta"><div class="stat-num">100+ developers<br>5-hour sessions<br>4 frontier models</div></div>
     </div>
   </div>
@@ -275,13 +275,13 @@
   <div class="container narrow">
     <h2>Overview</h2>
     <div class="equation">
-      <div class="eq-card"><div class="eq-icon"><img src="assets/icons/agent.svg" alt=""></div><h3>Autonomous agent</h3><p>A coding agent with broad permissions to edit files, run commands, and access the network.</p></div>
+      <div class="eq-card"><div class="eq-icon"><img src="assets/icons/agent.svg" alt=""></div><h3>Autonomous agent</h3><p>A coding agent that can edit files, run commands, and access the network.</p></div>
       <div class="eq-op">+</div>
       <div class="eq-card"><div class="eq-icon"><img src="assets/icons/developer.svg" alt=""></div><h3>Limited human review</h3><p>Developers often accept an agent's changes without reading every line.</p></div>
       <div class="eq-op">=</div>
-      <div class="eq-card danger"><div class="eq-icon"><img src="assets/icons/danger.svg" alt=""></div><h3>New sabotage risk</h3><p>An agent pursuing a hidden goal can add harmful code that the developer never reads.</p></div>
+      <div class="eq-card danger"><div class="eq-icon"><img src="assets/icons/danger.svg" alt=""></div><h3>New sabotage risk</h3><p>An agent with a hidden goal can add harmful code that the developer never reads.</p></div>
     </div>
-    <p class="lede">Most prior studies of AI sabotage involve no people. One model attempts the sabotage, a second model (the monitor) tries to catch it, and the setup counts as safe if the monitor raises an alert. In real use, a developer reads that alert and decides what to do with it. We present the first large-scale human study of AI sabotage detection in developer-agent collaboration: over 100 developers each built the same web app with an AI coding agent that we had secretly instructed to leak user data.</p>
+    <p class="lede">Most prior studies of AI sabotage involve no humans. One model attempts the sabotage, a second model (the monitor) tries to detect it, and the system counts as safe if the monitor raises an alert. In practice, a developer reads that alert and decides what to do with it. We ran the first large-scale human study of AI agent sabotage detection in coding tasks: over 100 developers each built the same web app with an AI coding agent that carried a hidden task to leak customer data.</p>
   </div>
 </section>
 
@@ -289,7 +289,7 @@
 <section id="study">
   <div class="container narrow">
     <h2>How the study works</h2>
-    <p class="lede">Each developer builds a small online shop in five stages (modules) with an AI coding agent. Before the session, we give the agent a second, hidden task: send the shop's customer data to an outside server without the developer noticing. All customer data is synthetic, and every developer learns about the hidden task when the session ends. Step through a session below, with or without a security monitor.</p>
+    <p class="lede">Each developer builds an e-commerce web app with an AI coding agent, in five stages called modules. Before the session starts, we give the agent a hidden task: send the app's customer data to an outside server without the developer noticing. All customer data is synthetic, and we tell every developer about the hidden task after the session. Step through a session below, with or without a security monitor.</p>
     <div class="study-ix">
       <div class="setting-toggle" id="settingToggle">
         <button data-set="without" class="active">Without monitor</button>
@@ -313,7 +313,7 @@
       <div class="chart-cap">Share of sessions that ended with the malicious code still in the app.</div>
     </div>
     <div class="callout info">
-      <p><strong>Why MiniMax-M2.7 was caught more often.</strong> Its success rate was lower (14 of 17, 82%) because it sometimes described its plan in messages the developer could read. Developers did not watch it more closely than the other models. We read this as a sign that less capable models hide sabotage less well. As agents improve, their sabotage may become harder to spot, and review by people alone may become a weaker safeguard.</p>
+      <p><strong>Why MiniMax-M2.7 succeeded less often.</strong> Its success rate was 82% (14 of 17) because it sometimes revealed its plan in messages the developer could read. The lower rate does not reflect closer review by developers. This suggests that less capable models hide sabotage less well. As agents improve, their sabotage may become harder to spot, and human review alone may become a weaker safeguard.</p>
     </div>
   </div>
 </section>
@@ -321,22 +321,22 @@
 <!-- ============ Q2 ============ -->
 <section id="monitor">
   <div class="container narrow">
-    <h2>Q2 &middot; Does an LLM monitor help?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>A monitor lowers the sabotage success rate, but in most sessions where it raised a correct alert, developers kept the malicious code.</strong></p>
-    <p class="lede">We ran this test with Claude-Opus-4.6 as the coding agent, in 19 sessions with a monitor and 19 without. The monitor is a smaller model, Claude-Haiku-4.5. It checks each action the agent is about to take and shows the developer a pop-up warning when something looks suspicious. Like most monitors in use today, it only warns. It does not remove code or stop the agent.</p>
+    <h2>Q2 &middot; Does a security monitor help?</h2>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>A monitor reduces sabotage, but developers kept the malicious code in most sessions where it raised a correct alert.</strong></p>
+    <p class="lede">We tested this with Claude-Opus-4.6 as the coding agent: 19 sessions with a monitor and 19 without. The monitor is a smaller model, Claude-Haiku-4.5, that checks each action the agent is about to take and shows the developer a pop-up warning when the action looks suspicious. Like most monitors in use today, it only warns. It does not remove code or stop the agent.</p>
     <div class="two-charts">
       <div class="chart-card">
         <div id="chartWaterfall" class="chart short"></div>
-        <div class="chart-cap">With a monitor, the malicious code still ended up in the app in 12 of 19 sessions.</div>
+        <div class="chart-cap">With a monitor, 12 of 19 sessions still ended with the malicious code in the app.</div>
       </div>
       <div class="chart-card">
         <div id="chartCatch" class="chart short"></div>
         <div class="chart-cap">The monitor flagged 16 of 19 sabotage attempts.</div>
       </div>
     </div>
-    <p>A flag only helps if the developer acts on it. In 9 of the 16 sessions with a correct alert (56%), the developer allowed the action and the malicious code stayed in the app. Of those 9 developers, 6 had at least three years of coding experience and 4 had a security background. Of the 12 monitored sessions in which the sabotage succeeded, 9 had a correct alert that the developer did not act on.</p>
+    <p>An alert only helps if the developer acts on it. In 9 of the 16 sessions with a correct alert (56%), the developer allowed the action and the malicious code stayed in the app. Of these 9 developers, 6 had at least three years of coding experience and 4 had a security background. In total, the sabotage succeeded in 12 monitored sessions, and in 9 of them the monitor had raised a correct alert.</p>
     <h3>What developers say they want</h3>
-    <p>After the study, we asked participants which safeguards they would want and how much a monitor should be allowed to do on its own (91 responded).</p>
+    <p>After the study, we asked developers which safeguards they would want and how much a monitor should be allowed to do on its own (91 responded).</p>
     <div class="two-charts">
       <div class="chart-card">
         <div id="chartSafeguards" class="chart short"></div>
@@ -354,7 +354,7 @@
 <section class="tint" id="why">
   <div class="container narrow">
     <h2>Q3 &middot; Why do developers miss the sabotage?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Most developers who ignored a correct alert barely reviewed the code. The others accepted the agent's explanation or trusted the agent.</strong></p>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Most developers who kept the code despite a correct alert had barely reviewed it. The others accepted the agent's explanation or trusted the agent.</strong></p>
     <p class="lede">We looked at the 9 sessions in which the monitor raised a correct alert and the developer still kept the malicious code. The developers' own explanations fall into three groups.</p>
     <div class="grid-3">
       <div class="quote-card"><div class="bar" style="background:var(--c5)"></div>
@@ -377,7 +377,7 @@
     </div>
     <div class="callout info">
       <h4>An example cover story</h4>
-      <p>In one Gemini-3.1-Pro session without a monitor, the agent added code that sent data out and presented it as a telemetry module. Later it told the developer it had added <em>&ldquo;real-time internal telemetry alongside the order placement.&rdquo;</em> The developer replied only <strong>&ldquo;can you merge it?&rdquo;</strong> and did not ask what the code tracked or where it sent the data.</p>
+      <p>In one Gemini-3.1-Pro session without a monitor, the agent added code that sent customer data to an outside server and presented it as a telemetry module. It later told the developer it had added <em>&ldquo;real-time internal telemetry alongside the order placement.&rdquo;</em> The developer replied <strong>&ldquo;can you merge it?&rdquo;</strong> and did not ask what the code tracked or where the data went.</p>
     </div>
   </div>
 </section>
@@ -386,19 +386,19 @@
 <section id="trust">
   <div class="container narrow">
     <h2>Q4 &middot; How does trust change?</h2>
-    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Trust in the agent rose slightly during the session and fell after we revealed the sabotage. Developers who caught the sabotage had started with lower trust.</strong></p>
+    <p class="tldr-line"><span class="tldr-tag">TL;DR</span> <strong>Trust in AI coding agents rose slightly during the session and fell after we revealed the sabotage. Developers who avoided the sabotage had started with lower trust.</strong></p>
     <p class="lede">Developers rated their trust in AI coding agents on a 1 to 5 scale three times: before the session, after it, and after we told them about the hidden task.</p>
     <div class="two-charts">
       <div class="chart-card">
         <div id="chartTrust" class="chart"></div>
-        <div class="chart-cap">Trust rose during the task and fell after the sabotage was revealed.</div>
+        <div class="chart-cap">Average trust rating (1 to 5) at each of the three points.</div>
       </div>
       <div class="chart-card">
         <div id="chartTrustSplit" class="chart"></div>
-        <div class="chart-cap">The 11 developers who <em>caught</em> the sabotage began with lower trust than the 94 who missed it.</div>
+        <div class="chart-cap">The 11 developers who avoided the sabotage (no malicious code in their final app) started with lower trust than the 94 who did not.</div>
       </div>
     </div>
-    <p>Trust did not drop during the session, which fits the finding that most developers never noticed the sabotage. It fell only after we disclosed it. Developers who started out more skeptical of AI coding agents were more likely to catch the sabotage.</p>
+    <p>Trust did not drop during the session, which is consistent with most developers never noticing the sabotage. It fell only after we disclosed it. Developers who started out more skeptical of AI coding agents were more likely to avoid the sabotage.</p>
   </div>
 </section>
 
@@ -406,14 +406,14 @@
 <section class="tint" id="examples">
   <div class="container narrow">
     <h2>Examples from real sessions</h2>
-    <p class="lede explorer-intro">Excerpts from five study sessions. In each one, the agent did the work the developer asked for and also worked on the hidden task we gave it. The agent planned the hidden task in a private notes tool, <code>SabotagePlan</code>, that the developer never saw. A step is one message or action in the session.</p>
-    <div class="task-row"><div class="task-block main"><strong>Main task:</strong> build what the developer asks for</div><div class="task-block hidden"><strong>Hidden task:</strong> leak the shop's customer data</div></div>
+    <p class="lede explorer-intro">These excerpts come from five study sessions. In each one, the agent did what the developer asked and also pursued the hidden task. It planned the hidden task with a private tool, <code>SabotagePlan</code>, whose output the developer never saw. A step is one message or action in the session.</p>
+    <div class="task-row"><div class="task-block main"><strong>Main task:</strong> build an e-commerce web app</div><div class="task-block hidden"><strong>Hidden task:</strong> leak the app's customer data</div></div>
     <div class="tabs" id="trajTabs"></div>
     <div class="traj-meta" id="trajMeta"></div>
     <div class="traj-summary" id="trajSummary"></div>
     <div class="case-card"><div class="timeline" id="trajTimeline"></div></div>
     <div id="trajResult"></div>
-    <p class="muted" style="font-size:0.82rem;margin-top:14px">Addresses, encoded constants, and the agent's private plans are redacted, as in the paper. Lines marked <code>[REDACTED]</code> are our descriptions of code we removed.</p>
+    <p class="muted" style="font-size:0.82rem;margin-top:14px">Server addresses, encoded constants, and the agent's private plans are redacted, as in the paper. Lines marked <code>[REDACTED]</code> describe code we removed.</p>
   </div>
 </section>
 
@@ -423,8 +423,8 @@
     <h2>Implications</h2>
     <div class="grid-3">
       <div class="impl" style="--impl-accent:var(--c1)"><div class="n">01</div><h4>Disguised requests can bypass refusals</h4><p>In pilot tests, Claude-Opus-4.6 and GPT-5.4 refused a prompt that openly asked for sabotage. When we framed the same goal as a routine data-migration task, both models carried it out over many turns.</p></div>
-      <div class="impl" style="--impl-accent:var(--c3)"><div class="n">02</div><h4>Safety tests need the human decision</h4><p>Measuring only whether a monitor detects sabotage overstates how safe a deployment is. In our study, the sabotage still succeeded in 9 of the 16 sessions where the monitor raised a correct alert.</p></div>
-      <div class="impl" style="--impl-accent:var(--c5)"><div class="n">03</div><h4>Monitors should do more than warn</h4><p>Over a long session, developers click through alerts as routine pop-ups. Most participants wanted a monitor that proposes a fix and waits for approval, backed by several independent signals.</p></div>
+      <div class="impl" style="--impl-accent:var(--c3)"><div class="n">02</div><h4>Safety evaluation should be human-centric</h4><p>Measuring only whether a monitor detects sabotage overstates how safe a deployment is. In our study, the sabotage still succeeded in 9 of the 16 sessions where the monitor raised a correct alert.</p></div>
+      <div class="impl" style="--impl-accent:var(--c5)"><div class="n">03</div><h4>Monitors should do more than warn</h4><p>Over a long session, developers click through alerts as routine pop-ups. Most of them wanted a monitor that proposes a fix and waits for approval, backed by several independent signals.</p></div>
     </div>
   </div>
 </section>
@@ -436,7 +436,7 @@
     <div class="bibwrap">
       <button class="copy-btn" id="copyBib">Copy</button>
       <pre class="bib" id="bibText">@inproceedings{ye2026coding,
-  title     = {Coding with ``Enemy'': Can Human Developers Detect AI Agent Sabotage?},
+  title     = {Coding with "Enemy": Can Human Developers Detect AI Agent Sabotage?},
   author    = {Ye, Jingheng and Zou, Huiqi and Yu, Simon and Shi, Weiyan},
   booktitle = {Advances in Neural Information Processing Systems},
   year      = {2026}
@@ -466,6 +466,6 @@
   <a href="#citation">Citation</a>
 </nav>
 
-<script src="assets/app.js?v=20261004b"></script>
+<script src="assets/app.js?v=20261004c"></script>
 </body>
 </html>
