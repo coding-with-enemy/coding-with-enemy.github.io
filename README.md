@@ -10,6 +10,7 @@ website/
 ├── assets/
 │   ├── app.js           # interactive study walkthrough, 5 sabotage trajectories, ECharts
 │   ├── sabotage_logo.png
+│   ├── share-card.png   # link preview shown when the page is shared on LinkedIn or X
 │   └── icons/           # model icons used in the Q1 chart and explorer tabs
 │       ├── claude.png       # real
 │       ├── gemini.png       # real
@@ -50,3 +51,4 @@ The site is then live at https://coding-with-enemy.github.io/.
 - **Sabotage trajectories:** the `TRAJECTORIES` array at the top of `assets/app.js`. Text is copied from the paper's redacted figures (`figures/sabotage_trajectories_redacted.tex`); never use the unredacted `sabotage_trajectories.tex`. Mark a malicious code line by setting the second element of its `[line, flag]` pair to `1`.
 - **Charts:** the `initCharts()` function in `assets/app.js`.
 - **Code button:** points to https://github.com/CHATS-lab/coding-agent-safety-monitor.
+- **Link preview:** `assets/share-card.png` is a copy of `papers/promotion/linkedin/images/share-card.png` in the main repo. Edit `papers/promotion/linkedin/share-card.html` there, rebuild, and copy the PNG here. The `og:image` tags in `index.html` point to it.
